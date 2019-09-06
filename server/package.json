@@ -2,19 +2,16 @@
   "name": "esmee-fairbairn-foundation",
   "version": "1.0.0",
   "description": "A prototype to increase efficency in the stage 1 applcantion process",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "./node_modules/.bin/eslint src/*.js src/**/*.js",
+    "lint": "./node_modules/.bin/eslint ./*.js ./**/*.js",
     "lint-fix": "npm run lint -- --fix",
-    "start:server": "node src/index.js",
-    "nodemon": "nodemon src/index.js",
-    "start:react": "cd client && npm i && npm start",
-    "client:init": "cd client && npm i",
     "start": "NODE_ENV=production npm run start:server",
-    "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run client:init && npm run build",
-    "dev": "concurrently --kill-others-on-fail \"npm run nodemon\" \"npm run start:react\""
+    "dev:server": "nodemon index.js",
+    "start:server": "node index.js",
+    "start:react": "cd ../ && cd client && npm start",
+    "dev": "concurrently --kill-others-on-fail \"npm run dev:server\" \"npm run start:react\""
   },
   "repository": {
     "type": "git",
