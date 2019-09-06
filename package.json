@@ -5,6 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "./node_modules/.bin/eslint src/*.js src/**/*.js",
+    "lint-fix": "npm run lint -- --fix",
     "start:server": "node src/index.js",
     "nodemon": "nodemon src/index.js",
     "start:react": "cd client && npm i && npm start",
@@ -26,6 +28,12 @@
   "homepage": "https://github.com/fac-graduate-programme/Esmee-Fairbairn-Foundation#readme",
   "devDependencies": {
     "concurrently": "^4.1.2",
+    "eslint": "^6.3.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^2.0.1",
     "nodemon": "^1.19.2"
   },
   "dependencies": {
