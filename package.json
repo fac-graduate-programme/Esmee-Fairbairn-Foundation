@@ -1,0 +1,45 @@
+{
+  "name": "esmee-fairbairn-foundation",
+  "version": "1.0.0",
+  "description": "A prototype to increase efficency in the stage 1 applcantion process",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "./node_modules/.bin/eslint src/*.js src/**/*.js",
+    "lint-fix": "npm run lint -- --fix",
+    "start:server": "node src/index.js",
+    "nodemon": "nodemon src/index.js",
+    "start:react": "cd client && npm i && npm start",
+    "client:init": "cd client && npm i",
+    "start": "NODE_ENV=production npm run start:server",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run client:init && npm run build",
+    "dev": "concurrently --kill-others-on-fail \"npm run nodemon\" \"npm run start:react\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fac-graduate-programme/Esmee-Fairbairn-Foundation.git"
+  },
+  "author": "FAC Faunders Programme",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fac-graduate-programme/Esmee-Fairbairn-Foundation/issues"
+  },
+  "homepage": "https://github.com/fac-graduate-programme/Esmee-Fairbairn-Foundation#readme",
+  "devDependencies": {
+    "concurrently": "^4.1.2",
+    "eslint": "^6.3.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^2.0.1",
+    "nodemon": "^1.19.2"
+  },
+  "dependencies": {
+    "compression": "^1.7.4",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "helmet": "^3.21.0"
+  }
+}
