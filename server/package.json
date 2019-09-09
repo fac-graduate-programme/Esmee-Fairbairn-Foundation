@@ -11,7 +11,8 @@
     "dev:server": "nodemon index.js",
     "start:server": "node index.js",
     "start:react": "cd ../ && cd client && npm start",
-    "dev": "concurrently --kill-others-on-fail \"npm run dev:server\" \"npm run start:react\""
+    "dev": "concurrently --kill-others-on-fail \"npm run dev:server\" \"npm run start:react\"",
+    "heroku-postbuild": "cd client && npm i && npm run build"
   },
   "repository": {
     "type": "git",
