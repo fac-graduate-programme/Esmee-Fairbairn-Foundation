@@ -1,4 +1,5 @@
 import React from 'react';
+
 import classes from './style.css'
 import {
   faArrowLeft,
@@ -17,4 +18,4 @@ export default function Button(props) {
           {rightIcon? <FontAwesomeIcon icon={faArrowRight}/>: null}
         </button>
   )
-}
+}6
