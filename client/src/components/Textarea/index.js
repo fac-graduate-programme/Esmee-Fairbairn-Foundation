@@ -1,11 +1,13 @@
 import React from 'react';
-import classes from './style.css'
 
-export default function TabBody(props) {
+import './style.css'
+
+export default function Textarea(props) {
+  const { wordsLimit, onChange } = props;
   return (
-    <container className={classes.textarea}>
-      <p>use up to {props.wordsLimit} words...</p>
-      <textarea placeholder='Type here...' onChange={props.onChange} />
+    <container className='textarea'>
+      <p className='textarea-limitation'>use up to {wordsLimit} words...</p>
+      <textarea className='textarea-answer' placeholder='Type here...' onChange={onChange} />
     </container>
   );
 }
