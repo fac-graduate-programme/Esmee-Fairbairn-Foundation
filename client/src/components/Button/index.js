@@ -10,13 +10,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './style.css'
 
 export default function Button(props) {
-  const { children, style, doneIcon, rightIcon, leftIcon, onClick } = props;
+  const { children, doneIcon, rightIcon, leftIcon, onClick } = props;
   return (
-        <button className={`button ${props.className}`} onClick={onClick}>
-          {leftIcon ? <FontAwesomeIcon icon={faArrowLeft} /> : null}
-          <span className='button-title'>{children}</span>
-          {done ? <FontAwesomeIcon icon={faCheckCircle} /> : null}
-          {rightIcon ? <FontAwesomeIcon icon={faArrowRight} /> : null}
-        </button>
+    <button className={`button ${props.className}`} onClick={onClick}>
+      {leftIcon ? <FontAwesomeIcon icon={faArrowLeft} /> : null}
+      <span className='button-title'>{children}</span>
+      {doneIcon ? <FontAwesomeIcon icon={faCheckCircle} /> : null}
+      {rightIcon ? <FontAwesomeIcon icon={faArrowRight} /> : null}
+    </button>
   )
 }
