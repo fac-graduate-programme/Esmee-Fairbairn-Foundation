@@ -22,7 +22,7 @@ export default function Review(props) {
         {
           questions.map((question, index) => <>
               <h1 className='review-question'>{question}</h1>
-              <h1 className='review-answer'>{answers[index]}</h1>
+              <p className='review-answer'>{answers[index]}</p>
             </>
           )
         }
