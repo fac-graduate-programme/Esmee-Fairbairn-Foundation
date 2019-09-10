@@ -4,7 +4,7 @@ import './style.css'
 
 export default function Review(props) {
 
-  const { question1, question2, question3, href, answer1, answer2, answer3 } = props;
+  const { questions, href, answers } = props;
 
   return (
     <div className='review'>
@@ -17,20 +17,17 @@ export default function Review(props) {
           </strong>
         </h2>
       </div>
-      <div>
-        <h1 className='review-question'>{question1}</h1>
-        <p className='review-answer'>{answer1}</p>
-      </div>
 
       <div>
-        <h1 className='review-question'>{question2}</h1>
-        <p className='review-answer'>{answer2}</p>
+        {
+          questions.map((question, index) => <>
+              <h1 className='review-question'>{question}</h1>
+              <h1 className='review-answer'>{answers[index]}</h1>
+            </>
+          )
+        }
       </div>
 
-      <div>
-        <h1 className='review-question'>{question3}</h1>
-        <p className='review-answer'>{answer3}</p>
-      </div>
     </div>
-  );
+  )
 }
