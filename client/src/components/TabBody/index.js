@@ -5,13 +5,13 @@ import './style.css'
 
 export default function TabBody(props) {
 
-  const { href, question, tips, expectations, onChange, wordsLimit } = props;
+  const { question, tips, expectations, onChange, wordsLimit } = props;
 
   return (
     <div className='tabBody'>
       <div className='tabBody-guidelines'>
         <h2>Refer to
-          <a className='tabBody-guidelines-href' href={href}>
+          <a className='tabBody-guidelines-href' href='https://esmeefairbairn.org.uk/userfiles/Documents/Application%20Forms/GuidanceforGrantApplicants.pdf'>
             application guidelines
           </a>
         </h2>
