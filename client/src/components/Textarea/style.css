@@ -3,6 +3,7 @@
    padding: 10px;
    background-color: #C2C2C2;
    border: none;
+   font-size: .8em;   
  }
 
  .textarea-answer::placeholder {
