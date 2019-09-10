@@ -20,7 +20,7 @@ export default class Page2 extends Component {
 
   render() {
     
-    const {handleStaticButton} = this.props;
+    const { handleStaticButton } = this.props;
     const { checked, guidlinesApproved } = this.state;
 
     return (
@@ -45,8 +45,10 @@ export default class Page2 extends Component {
           <a href='https://www.esmeefairbairn.org.uk/userfiles/Documents/Application%20Forms/GuidanceforGrantApplicants.pdf' target='_blank' className='page2-note-link' > here</a>.
           <br />
           <br />
-          <input type="checkbox" name="check" onChange={this.handleCheckBox} checked={checked} />
-          <span onClick={this.handleCheckBox} > I have read the application guidelines </span>
+          <input type="checkbox" id='checkbox' name="check" onChange={this.handleCheckBox} checked={checked} />
+          <label for='checkbox'>
+            I have read the application guidelines
+          </label>
         </div>
         <Button className='page2-btn' onClick={handleStaticButton} disabled={!guidlinesApproved} >PROCEED</Button>
       </div>
