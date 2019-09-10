@@ -4,7 +4,7 @@ import Button from '../../components/Button'
 
 import "./style.css"
 
-export default function page1(props) {
+export default function Page1(props) {
 
   const { handleStaticButton } = props
 
