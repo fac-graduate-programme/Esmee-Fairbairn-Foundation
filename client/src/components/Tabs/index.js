@@ -104,7 +104,6 @@ export default function FullWidthTabs(props) {
             tips = {questions[0].tips}
             question = {questions[0].title}
             expectations = {questions[0].expectations}
-            href="facebook.com"
             wordsLimit= {questions[0].wordsLimit}
             onChange={e => setAnswer1(e.target.value)}
           />
@@ -123,7 +122,6 @@ export default function FullWidthTabs(props) {
               tips = {questions[1].tips}
               question = {questions[1].title}
               expectations = {questions[1].expectations}
-              href="facebook.com"
               wordsLimit= {questions[1].wordsLimit}
               onChange={e => setAnswer2(e.target.value)}
           />
@@ -142,7 +140,6 @@ export default function FullWidthTabs(props) {
             tips = {questions[2].tips}
             question = {questions[2].title}
             expectations = {questions[2].expectations}
-            href="facebook.com"
             wordsLimit= {questions[2].wordsLimit}
             onChange={e => setAnswer3(e.target.value)}
           />
