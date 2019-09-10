@@ -10,7 +10,8 @@
 }
 
 .tabBody-guidelines-href {
-  color: #E60085
+  color: #E60085;
+  font-weight: 600;
 }
 
 .tabBody-guidelines-href:hover {

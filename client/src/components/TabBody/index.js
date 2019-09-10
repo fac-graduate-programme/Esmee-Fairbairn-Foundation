@@ -8,8 +8,14 @@ export default function TabBody(props) {
   const { href, question, tips, expectations, onChange, wordsLimit } = props;
 
   return (
-    <container className='tabBody'>
-      <div className='tabBody-guidelines'><h2>Refer to <strong><a className='tabBody-guidelines-href' href={href}>application guidelines</a></strong></h2></div>
+    <div className='tabBody'>
+      <div className='tabBody-guidelines'>
+        <h2>Refer to
+          <a className='tabBody-guidelines-href' href={href}>
+            application guidelines
+          </a>
+        </h2>
+      </div>
       <h1 className='tabBody-question'>{question}</h1>
       <ul>
         {tips.map(item => <li>{item}</li>)}
@@ -19,6 +25,6 @@ export default function TabBody(props) {
         {expectations.map(item => <li className='tabBody-expectationsItem'>{item}</li>)}
       </ul>
       <Textarea onChange={onChange} wordsLimit={wordsLimit}/>
-    </container>
+    </div>
   )
 }
