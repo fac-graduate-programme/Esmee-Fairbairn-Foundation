@@ -1,5 +1,5 @@
-import React from 'react';
-import classes from './style.css'
+import React from 'react'
+
 import {
   faArrowLeft,
   faArrowRight,
@@ -7,13 +7,16 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+import './style.css'
+
 export default function Button(props) {
+  const { children, doneIcon, rightIcon, leftIcon, onClick } = props;
   return (
-        <button className={classes.button} style={props.style} onClick={props.onClick}>
-          {props.leftIcon? <FontAwesomeIcon icon={faArrowLeft}/>: null}
-            <span>{props.label}</span>
-          {props.done? <FontAwesomeIcon icon={faCheckCircle}/>: null}
-          {props.rightIcon? <FontAwesomeIcon icon={faArrowRight}/>: null}
-        </button>
+    <button className={`button ${props.className}`} onClick={onClick}>
+      {leftIcon ? <FontAwesomeIcon icon={faArrowLeft} /> : null}
+      <span className='button-title'>{children}</span>
+      {doneIcon ? <FontAwesomeIcon icon={faCheckCircle} /> : null}
+      {rightIcon ? <FontAwesomeIcon icon={faArrowRight} /> : null}
+    </button>
   )
 }
