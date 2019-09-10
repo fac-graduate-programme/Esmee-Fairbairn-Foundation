@@ -9,5 +9,5 @@ export default function Textarea(props) {
       <p className='textarea-limitation'>use up to {wordsLimit} words...</p>
       <textarea className='textarea-answer' placeholder='Type here...' onChange={onChange} />
     </container>
-  );
+  )
 }
