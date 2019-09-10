@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
-import Tab from '@material-ui/core/Tab';
-import { makeStyles } from '@material-ui/core/styles';
+import Tab from '@material-ui/core/Tab'
+import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
   root: {
@@ -20,12 +20,13 @@ const useStyles = makeStyles({
   selected: {},
 });
 
-export default function Tab(props) {
+export default function CustomTab(props) {
+
   const classes = useStyles();
-  const {  children, className, ...other } = props;
+
     return (
       <Tab
-        {...other}
+        {...props}
         classes={{
           root: classes.root,
           selected: classes.selected,
