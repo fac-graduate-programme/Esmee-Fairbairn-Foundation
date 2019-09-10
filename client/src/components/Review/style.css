@@ -1,8 +1,3 @@
-.review {
-  display: flex;
-  flex-direction: column;
-}
-
 .review-guidelines {
   text-align: right;
   font-size: .5em;
@@ -20,5 +15,5 @@
 
 .review-answer {
   color: #666666;
-  font-size: .9em;
+  font-size: .7em;
 }
