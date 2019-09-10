@@ -77,6 +77,15 @@ export default function FullWidthTabs(props) {
     setValue(index)
   }
 
+  function handleSubmit() {
+    if(answer1.split(" ").length == 1 || answer1.split(" ").length > questions[0].wordsLimit ||
+       answer2.split(" ").length == 1 || answer2.split(" ").length > questions[1].wordsLimit ||
+       answer3.split(" ").length == 1 || answer3.split(" ").length > questions[2].wordsLimit
+    ) {
+      alert('Make sure you answered all questions without exceeding word limits!')
+    }
+  }
+
   return (
     <div className={classes.root}>
       <AppBar position="static" color="default">
@@ -162,7 +171,7 @@ export default function FullWidthTabs(props) {
             <Button  style={{backgroundColor: '#5C595B', width:'49%'}} label='back' leftIcon onClick={()=> setValue(2)} className='back'>
               back
             </Button>
-            <Button style={{backgroundColor: 'green', width:'49%'}} label='submit' doneIcon className='done'>
+            <Button style={{backgroundColor: 'green', width:'49%'}} label='submit' doneIcon className='done' onClick={handleSubmit}>
               submit
             </Button>
           </div>
