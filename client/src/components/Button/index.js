@@ -15,7 +15,7 @@ export default function Button(props) {
         <button className={`button ${props.className}`} onClick={onClick}>
           {leftIcon ? <FontAwesomeIcon icon={faArrowLeft} /> : null}
           <span className='button-title'>{label}</span>
-          {done ? <FontAwesomeIcon icon={faCheckCircle}  /> : null}
+          {done ? <FontAwesomeIcon icon={faCheckCircle} /> : null}
           {rightIcon ? <FontAwesomeIcon icon={faArrowRight} /> : null}
         </button>
   )
