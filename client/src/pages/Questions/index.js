@@ -14,7 +14,7 @@ import Button from '../Button'
 import TabBody from '../TabBody'
 import './style.css'
 
-function TabPanel(props) {
+const  TabPanel = (props) => {
 
   const { children, value, index, ...other } = props
 
@@ -32,13 +32,7 @@ function TabPanel(props) {
   )
 }
 
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
-}
-
-function a11yProps(index) {
+const  a11yProps = (index) => {
   return {
     id: `full-width-tab-${index}`,
     'aria-controls': `full-width-tabpanel-${index}`,
@@ -58,7 +52,7 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-  export default function Page4(props) {
+const  Page4 = (props) => {
 
   const { questions } = props;
   const [answer1, setAnswer1] = useState("");
@@ -68,15 +62,15 @@ const useStyles = makeStyles(theme => ({
   const theme = useTheme();
   const [value, setValue] = React.useState(0)
 
-  function handleChange(event, newValue) {
+  const  handleChange = (event, newValue) => {
     setValue(newValue)
   }
 
-  function handleChangeIndex(index) {
+  const  handleChangeIndex = (index) => {
     setValue(index)
   }
 
-  function handleSubmit() {
+  const  handleSubmit = () => {
     if(answer1.split(" ").length == 1 || answer1.split(" ").length > questions[0].wordsLimit ||
        answer2.split(" ").length == 1 || answer2.split(" ").length > questions[1].wordsLimit ||
        answer3.split(" ").length == 1 || answer3.split(" ").length > questions[2].wordsLimit
@@ -180,3 +174,11 @@ const useStyles = makeStyles(theme => ({
     </div>
   )
 }
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+}
+
+  export default Page4;
