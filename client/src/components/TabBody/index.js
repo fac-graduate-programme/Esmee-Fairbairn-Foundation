@@ -5,7 +5,7 @@ import './style.css'
 
 export default function TabBody(props) {
 
-  const { question, tips, expectations, onChange, wordsLimit } = props;
+  const { question, tips, expectations, onChangeAnswer , wordsLimit } = props;
 
   return (
     <div className='tabBody'>
@@ -17,7 +17,7 @@ export default function TabBody(props) {
       <ul>
         {expectations.map(item => <li className='tabBody-expectationsItem'>{item}</li>)}
       </ul>
-      <Textarea onChange={onChange} wordsLimit={wordsLimit} />
+      <Textarea onChange={onChangeAnswer } wordsLimit={wordsLimit} />
     </div>
   )
 }
