@@ -5,14 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "./node_modules/.bin/eslint ./*.js ./**/*.js",
+    "lint": "./node_modules/.bin/eslint ./server/**/*.js",
     "lint-fix": "npm run lint -- --fix",
     "start": "NODE_ENV=production npm run start:server",
-    "dev:server": "nodemon index.js",
-    "start:server": "node index.js",
-    "start:react": "cd ../ && cd client && npm start",
+    "dev:server": "nodemon server/index.js",
+    "start:server": "node server/index.js",
+    "start:react": "cd client && npm start",
     "dev": "concurrently --kill-others-on-fail \"npm run dev:server\" \"npm run start:react\"",
-    "heroku-postbuild": "cd ../client && npm i && npm run build"
+    "heroku-postbuild": "cd client && npm i && npm run build"
   },
   "repository": {
     "type": "git",
