@@ -4,13 +4,13 @@
   "description": "A prototype to increase efficency in the stage 1 applcantion process",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test node test/postAnswers | tap-spec ",
-    "lint": "./node_modules/.bin/eslint ./*.js ./**/*.js",
+    "test": "NODE_ENV=test node server/test/postAnswers | tap-spec ",
+    "lint": "./node_modules/.bin/eslint server/**/*.js",
     "lint-fix": "npm run lint -- --fix",
     "start": "NODE_ENV=production npm run start:server",
-    "dev:server": "nodemon index.js",
-    "start:server": "node index.js",
-    "start:react": "cd ../ && cd client && npm start",
+    "dev:server": "nodemon server/index.js",
+    "start:server": "node server/index.js",
+    "start:react": "cd client && npm start",
     "dev": "concurrently --kill-others-on-fail \"npm run dev:server\" \"npm run start:react\"",
     "heroku-postbuild": "cd client && npm i && npm run build"
   },

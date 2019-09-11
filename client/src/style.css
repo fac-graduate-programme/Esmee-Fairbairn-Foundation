@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #E60085;
+  font-weight: 600;
+}
+
+a:hover {
+  color: #08A500;
+}
+
+html {
+  background-color: #C4C4C4;
+  display: flex;
+  justify-content: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+.app {
+  text-align: center;
+  height: 100vh;
+}
+
+.app-logo {
+  height: 170px;
+  width: 170px;
+}
+
+.app-subTitle {
+  text-align: right;
+}
+
+.app-subTitle--link {
+  color: #E60085;
+}
