@@ -17,7 +17,7 @@ export default function TabBody(props) {
       <ul>
         {expectations.map(item => <li className='tabBody-expectationsItem'>{item}</li>)}
       </ul>
-      <Textarea onChange={onChangeAnswer } wordsLimit={wordsLimit} />
+      <Textarea onChange={onChangeAnswer} wordsLimit={wordsLimit} />
     </div>
   )
 }
