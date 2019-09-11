@@ -1,5 +1,6 @@
 import React from 'react'
 
+import Swal from 'sweetalert2'
 import PropTypes from 'prop-types'
 import Box from '@material-ui/core/Box'
 import Tabs from '@material-ui/core/Tabs'
@@ -75,7 +76,11 @@ const  Page4 = (props) => {
        answer2.split(" ").length == 1 || answer2.split(" ").length > questions[1].wordsLimit ||
        answer3.split(" ").length == 1 || answer3.split(" ").length > questions[2].wordsLimit
     ) {
-      alert('Make sure you answered all questions without exceeding word limits!')
+      Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: 'Make sure you answered all questions without exceeding word limits!',
+      })
     }
   }
 
