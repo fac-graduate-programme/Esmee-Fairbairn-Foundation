@@ -1,0 +1,23 @@
+.page2-title {
+  text-align: center;
+  color: #E60085;
+}
+
+.page2-paragraph {
+  width: 600px;
+}
+
+.page2-btn {
+  margin-top: 30px;
+  background-color: #E60085;
+}
+
+.page2-note {
+  padding: 20px;
+  background-color: rgba(93, 51, 91, 0.664);
+  border-radius: 5px;
+}
+
+.page2-note-link {
+  color: #E60085;
+}
