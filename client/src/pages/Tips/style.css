@@ -1,0 +1,22 @@
+.page3 {
+  width: 600px;
+}
+
+.page3-title {
+  text-align: center;
+  color: #E60085;
+  padding: 20px 0;
+}
+
+.page3-list {
+  text-align: left;
+}
+
+.page3-list--item {
+  padding: 7px;
+}
+
+.page3-btn {
+  background-color: #E60085;
+  margin-top: 25px;
+}

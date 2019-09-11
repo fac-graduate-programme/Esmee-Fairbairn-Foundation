@@ -1,0 +1,18 @@
+.textarea-answer {
+   border-radius: 10px;
+   padding: 10px;
+   background-color: #C2C2C2;
+   border: none;
+   font-size: .8em;   
+ }
+
+ .textarea-answer::placeholder {
+   color: #636363;
+   font-size: .8em;
+ }
+
+ .textarea-limitation {
+   color: #000;
+   font-size: .8em;
+   font-weight: bold;
+ }
