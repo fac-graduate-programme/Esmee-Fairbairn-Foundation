@@ -1,35 +1,13 @@
 import React from "react";
 import "./style.css";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import Button from "./../Button";
+import DialogTitle from "@material-ui/core/DialogTitle";
 import { makeStyles } from "@material-ui/core/styles";
-import Modal from "@material-ui/core/Modal";
-// import Button from "@material-ui/core/Button";
-
-function getModalStyle() {
-  const top = 50;
-  const left = 50;
-
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`
-  };
-}
-
-const useStyles = makeStyles(theme => ({
-  paper: {
-    position: "absolute",
-    width: 400,
-    backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-    textAlign: "center"
-  }
-}));
 
 const PopUp = props => {
-  const classes = useStyles();
-  const [modalStyle] = React.useState(getModalStyle);
+  // Needs to be passed down as a prop
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
@@ -38,21 +16,29 @@ const PopUp = props => {
   const handleClose = () => {
     setOpen(false);
   };
+  // Will remove button from this component after people have tested it
 
   return (
     <div>
       <button onClick={handleOpen}>Click Me</button>
-      <Modal
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
+      <Dialog
         open={open}
         onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
         {...props}
       >
-        <div style={modalStyle} className={classes.paper}>
-          <p>{props.content}</p>
-        </div>
-      </Modal>
+        <DialogTitle>
+          Thank you. Your response has been processed successfully.
+        </DialogTitle>
+        <DialogActions>
+          <div className="ok-button">
+            <Button onClick={handleClose} className="ok">
+              Ok
+            </Button>
+          </div>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };
