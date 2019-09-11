@@ -20,7 +20,7 @@ export default function TabBody(props) {
       <ul>
         {tips.map(item => <li>{item}</li>)}
       </ul>
-      <h2 className='tabBody-answer'>We do not fund:</h2>
+      <h2>We do not fund:</h2>
       <ul>
         {expectations.map(item => <li className='tabBody-expectationsItem'>{item}</li>)}
       </ul>

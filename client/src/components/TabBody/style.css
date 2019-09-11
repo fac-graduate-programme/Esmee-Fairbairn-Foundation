@@ -3,24 +3,9 @@
   font-size: .5em;
 }
 
-.tabBody-guidelines-href {
-  color: #E60085;
-  font-weight: 600;
-}
-
-.tabBody-guidelines-href:hover {
-  color: #08A500;
-}
-
 .tabBody-question {
   color: #000000;
   font-size: 1em;
-  font-weight: bold;
-}
-
-.tabBody-answer {
-  color: #000000;
-  font-size: .9em;
   font-weight: bold;
 }
 
