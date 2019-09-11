@@ -1,9 +1,3 @@
-
-.tabBody {
-  display: flex;
-  flex-direction: column;
-}
-
 .tabBody-guidelines {
   text-align: right;
   font-size: .5em;
