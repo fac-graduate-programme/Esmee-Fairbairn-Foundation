@@ -9,7 +9,6 @@ const useStyles = makeStyles({
     textTransform: "capitalize",
     fontSize: "1.1em",
     color: '#C4C4C4',
-    height: 48,
     padding: '0 30px',
     '&$selected': {
       background: '#ED2585',
