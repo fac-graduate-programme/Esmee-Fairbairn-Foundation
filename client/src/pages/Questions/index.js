@@ -9,7 +9,7 @@ import SwipeableViews from 'react-swipeable-views'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 
-import CustomTab from '../Tab'
+import CustomTab from '../../components/Tab'
 import Review from '../Review'
 import Button from '../Button'
 import TabBody from '../TabBody'
