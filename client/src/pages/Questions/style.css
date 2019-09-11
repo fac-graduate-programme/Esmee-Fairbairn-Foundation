@@ -1,0 +1,17 @@
+.tabs {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.back {
+  background-color: #666666
+}
+
+.next {
+  background-color: #E60085;
+}
+
+.done {
+  background-color: #08A500;
+}
