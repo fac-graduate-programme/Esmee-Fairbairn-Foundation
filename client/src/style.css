@@ -6,6 +6,12 @@
 
 a {
   text-decoration: none;
+  color: #E60085;
+  font-weight: 600;
+}
+
+a:hover {
+  color: #08A500;
 }
 
 html {
