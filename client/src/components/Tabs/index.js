@@ -47,7 +47,6 @@ function a11yProps(index) {
 
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: '#EDEDED',
     width: '60%', // Change the container width
     margin: "0 auto",
       ['@media (max-width:780px)']: {
