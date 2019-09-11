@@ -9,13 +9,6 @@ export default function TabBody(props) {
 
   return (
     <div className='tabBody'>
-      <div className='tabBody-guidelines'>
-        <h2>Refer to
-          <a className='tabBody-guidelines-href' href='https://esmeefairbairn.org.uk/userfiles/Documents/Application%20Forms/GuidanceforGrantApplicants.pdf'>
-            application guidelines
-          </a>
-        </h2>
-      </div>
       <h1 className='tabBody-question'>{question}</h1>
       <ul>
         {tips.map(item => <li>{item}</li>)}
