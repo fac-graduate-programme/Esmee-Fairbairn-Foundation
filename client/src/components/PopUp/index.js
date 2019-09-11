@@ -17,7 +17,6 @@ const PopUp = props => {
     setOpen(false);
   };
   // Will remove button from this component after people have tested it
-
   return (
     <div>
       <button onClick={handleOpen}>Click Me</button>
