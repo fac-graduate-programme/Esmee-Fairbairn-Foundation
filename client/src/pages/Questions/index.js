@@ -33,13 +33,6 @@ const  TabPanel = (props) => {
   )
 }
 
-const  a11yProps = (index) => {
-  return {
-    id: `full-width-tab-${index}`,
-    'aria-controls': `full-width-tabpanel-${index}`,
-  }
-}
-
 const useStyles = makeStyles(theme => ({
   root: {
     width: '60%', // Change the container width
@@ -94,10 +87,10 @@ const  Page4 = (props) => {
           aria-label="full width tabs example"
           classes={{ indicator: classes.indicator }}
         >
-            <CustomTab label="Question 1" {...a11yProps(0)} />
-            <CustomTab label="Question 2" {...a11yProps(1)} />
-            <CustomTab label="Question 3" {...a11yProps(2)} />
-            <CustomTab label="Review" {...a11yProps(3)} />
+            <CustomTab label="Question 1" />
+            <CustomTab label="Question 2" />
+            <CustomTab label="Question 3" />
+            <CustomTab label="Review" />
         </Tabs>
       </AppBar>
       <SwipeableViews
