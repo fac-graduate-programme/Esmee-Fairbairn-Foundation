@@ -1,4 +1,4 @@
-const addAnswer = require("../../db/queries/postAnswersQuery");
+const addAnswer = require("../../db/queries/postAnswers");
 
 module.exports = (req, res, next) => {
   try {
