@@ -31,7 +31,7 @@ module.exports = async (req, res, next) => {
       }))
     
     res.send({
-      questions: updatedNames,
+      data: updatedNames,
       statusCode: 200,
     });
   } catch (err) {
