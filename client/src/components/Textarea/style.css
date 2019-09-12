@@ -1,3 +1,8 @@
+.textarea {
+  display: flex;
+  flex-direction: column
+}
+
 .textarea-answer {
    border-radius: 10px;
    padding: 10px;
