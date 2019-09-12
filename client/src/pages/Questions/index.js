@@ -55,6 +55,7 @@ const  Page4 = (props) => {
   const theme = useTheme();
   const [value, setValue] = useState(0);
   const [loading, setLoading] = useState(false);
+// not merged loading component - render when loading true
 
   const  handleChange = (event, newValue) => {
     setValue(newValue)
@@ -99,7 +100,7 @@ const  Page4 = (props) => {
    text: 'Something went wrong. Please resubmit your application.',
  }) }})
  
- // return (<popup component>)
+ // not merged return (<popup component>)
 }
 catch {() => {
      this.setState({ loading: false });
