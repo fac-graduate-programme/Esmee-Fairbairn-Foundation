@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 import Swal from 'sweetalert2'
 import PropTypes from 'prop-types'
@@ -36,6 +37,8 @@ const  TabPanel = (props) => {
 const useStyles = makeStyles(theme => ({
   root: {
     margin: "0 auto",
+    textAlign: 'left',
+    wordBreak: 'break',
       ['@media (max-width:780px)']: {
        width: '100%'
       }
@@ -47,10 +50,18 @@ const useStyles = makeStyles(theme => ({
 
 const  Page4 = (props) => {
 
-  const { questions } = props;
+  useEffect(() => {
+    axios('/api/v1/questions')
+      .then(res => {console.log('eeeeeeeee', res);
+       getQuestions(res.data.data)})
+      .catch(res => {})
+  }, [])
+
   const [answer1, setAnswer1] = useState("");
   const [answer2, setAnswer2] = useState("");
   const [answer3, setAnswer3] = useState("");
+  //44444444444444444444444444444444444444444444444444444444
+  const [questions, getQuestions] = useState([]);
   const classes = useStyles()
   const theme = useTheme();
   const [value, setValue] = React.useState(0)
@@ -65,9 +76,9 @@ const  Page4 = (props) => {
 
   const  handleSubmit = () => {
     
-    if(answer1.split(" ")[0] == "" || answer1.split(" ").length > questions[0].wordsLimit ||
-       answer2.split(" ")[0] == "" || answer2.split(" ").length > questions[1].wordsLimit ||
-       answer3.split(" ")[0] == "" || answer3.split(" ").length > questions[2].wordsLimit
+    if(answer1.split(" ")[0] === "" || answer1.split(" ").length > questions[0].wordsLimit ||
+       answer2.split(" ")[0] === "" || answer2.split(" ").length > questions[1].wordsLimit ||
+       answer3.split(" ")[0] === "" || answer3.split(" ").length > questions[2].wordsLimit
     ) {
       Swal.fire({
         type: 'error',
@@ -75,6 +86,87 @@ const  Page4 = (props) => {
         text: 'Make sure you answered all questions without exceeding word limits!',
       })
     }
+  }           
+
+  let TabsComponent = <h1>Loading ...</h1>;
+  if(questions.length > 0) {
+    TabsComponent = (<SwipeableViews
+          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+          index={value}
+          onChangeIndex={handleChangeIndex}
+        >
+
+          <TabPanel value={value} index={0} dir={theme.direction}>
+            <TabBody
+              tips = {questions[0].tips}
+              question = {questions[0].title}
+              expectations = {questions[0].expectations}
+              wordsLimit= {questions[0].wordsLimit}
+              onChangeAnswer={e => setAnswer1(e.target.value)}
+            />
+            <div className='tabs'>
+              <Button  style={{backgroundColor: '#5C595B'}} label='back' leftIcon className='back'>
+                back
+              </Button>
+              <Button style={{backgroundColor: '#E60085'}} label='next' rightIcon onClick={()=> setValue(1)} className='next'>
+                next
+              </Button>
+            </div>
+          </TabPanel>
+
+          <TabPanel value={value} index={1} dir={theme.direction}>
+            <TabBody
+                tips = {questions[1].tips}
+                question = {questions[1].title}
+                expectations = {questions[1].expectations}
+                wordsLimit= {questions[1].wordsLimit}
+                onChangeAnswer={e => setAnswer2(e.target.value)}
+            />
+            <div className='tabs'>
+              <Button  style={{backgroundColor: '#5C595B'}} label='back' leftIcon onClick={()=>setValue(0)} className='back'>
+                back
+              </Button>
+              <Button style={{backgroundColor: '#E60085'}} label='next' rightIcon onClick={()=> setValue(2)} className='next'>
+                next
+              </Button>
+            </div>
+          </TabPanel>
+
+          <TabPanel value={value} index={2} dir={theme.direction}>
+            <TabBody
+              tips = {questions[2].tips}
+              question = {questions[2].title}
+              expectations = {questions[2].expectations}
+              wordsLimit= {questions[2].wordsLimit}
+              onChangeAnswer={e => setAnswer3(e.target.value)}
+            />
+            <div className='tabs'>
+              <Button  style={{backgroundColor: '#5C595B'}} label='back' leftIcon onClick={()=> setValue(1)} className='back'>
+                back
+              </Button>
+              <Button style={{backgroundColor: '#E60085'}} label='next' rightIcon onClick={()=> setValue(3)} className='next'>
+                next
+              </Button>
+            </div>
+          </TabPanel>
+
+          <TabPanel value={value} index={3} dir={theme.direction}>
+            <Review
+              questions={[questions[0].title, questions[1].title, questions[2].title]}
+              answers={[answer1, answer2, answer3]}
+            />
+            <div className='tabs'>
+              <Button  style={{backgroundColor: '#5C595B', width:'49%'}} label='back' leftIcon onClick={()=> setValue(2)} className='back'>
+                back
+              </Button>
+              <Button style={{backgroundColor: 'green', width:'49%'}} label='submit' doneIcon className='done' onClick={handleSubmit}>
+                submit
+              </Button>
+            </div>
+          </TabPanel>
+
+        </SwipeableViews>
+        )
   }
 
   return (
@@ -93,82 +185,7 @@ const  Page4 = (props) => {
             <CustomTab label="Review" />
         </Tabs>
       </AppBar>
-      <SwipeableViews
-        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-        index={value}
-        onChangeIndex={handleChangeIndex}
-      >
-
-        <TabPanel value={value} index={0} dir={theme.direction}>
-          <TabBody
-            tips = {questions[0].tips}
-            question = {questions[0].title}
-            expectations = {questions[0].expectations}
-            wordsLimit= {questions[0].wordsLimit}
-            onChangeAnswer={e => setAnswer1(e.target.value)}
-          />
-          <div className='tabs'>
-            <Button  style={{backgroundColor: '#5C595B'}} label='back' leftIcon className='back'>
-              back
-            </Button>
-            <Button style={{backgroundColor: '#E60085'}} label='next' rightIcon onClick={()=> setValue(1)} className='next'>
-              next
-            </Button>
-          </div>
-        </TabPanel>
-
-        <TabPanel value={value} index={1} dir={theme.direction}>
-          <TabBody
-              tips = {questions[1].tips}
-              question = {questions[1].title}
-              expectations = {questions[1].expectations}
-              wordsLimit= {questions[1].wordsLimit}
-              onChangeAnswer={e => setAnswer2(e.target.value)}
-          />
-          <div className='tabs'>
-            <Button  style={{backgroundColor: '#5C595B'}} label='back' leftIcon onClick={()=>setValue(0)} className='back'>
-              back
-            </Button>
-            <Button style={{backgroundColor: '#E60085'}} label='next' rightIcon onClick={()=> setValue(2)} className='next'>
-              next
-            </Button>
-          </div>
-        </TabPanel>
-
-        <TabPanel value={value} index={2} dir={theme.direction}>
-          <TabBody
-            tips = {questions[2].tips}
-            question = {questions[2].title}
-            expectations = {questions[2].expectations}
-            wordsLimit= {questions[2].wordsLimit}
-            onChangeAnswer={e => setAnswer3(e.target.value)}
-          />
-          <div className='tabs'>
-            <Button  style={{backgroundColor: '#5C595B'}} label='back' leftIcon onClick={()=> setValue(1)} className='back'>
-              back
-            </Button>
-            <Button style={{backgroundColor: '#E60085'}} label='next' rightIcon onClick={()=> setValue(3)} className='next'>
-              next
-            </Button>
-          </div>
-        </TabPanel>
-
-        <TabPanel value={value} index={3} dir={theme.direction}>
-          <Review
-            questions={[questions[0].title, questions[1].title, questions[2].title]}
-            answers={[answer1, answer2, answer3]}
-          />
-          <div className='tabs'>
-            <Button  style={{backgroundColor: '#5C595B', width:'49%'}} label='back' leftIcon onClick={()=> setValue(2)} className='back'>
-              back
-            </Button>
-            <Button style={{backgroundColor: 'green', width:'49%'}} label='submit' doneIcon className='done' onClick={handleSubmit}>
-              submit
-            </Button>
-          </div>
-        </TabPanel>
-
-      </SwipeableViews>
+      { TabsComponent }
     </div>
   )
 }
@@ -179,4 +196,4 @@ TabPanel.propTypes = {
   value: PropTypes.any.isRequired,
 }
 
-  export default Page4;
+export default Page4;
