@@ -1,8 +1,6 @@
 const getQuestions = require('../../db/queries/getQuestions')
 const  splitString = require('../utils/splitString')
 
-
-
 module.exports = async (req, res, next) => {
 
   let newQuestionsArray = []
