@@ -15,15 +15,13 @@ const PopUp = props => {
   const handleClose = () => {
     setOpen(false);
   };
-  // Will remove button from this component after people have tested it
   return (
     <div>
       <button onClick={handleOpen}>Click Me</button>
       <Dialog
         open={open}
         onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
+        aria-labelledby="Success pop-up"
         {...props}
       >
         <DialogTitle>
