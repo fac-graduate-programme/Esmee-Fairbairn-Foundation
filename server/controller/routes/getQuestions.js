@@ -1,12 +1,17 @@
-const getQuestionsQuery = require('../../db/queries/getQuestionsQuery')
+const getQuestions = require('../../db/queries/getQuestions')
 const  splitString = require('../utils/splitString')
-let newArrayOfQuestionsObject = []
+
+
 
 module.exports = async (req, res, next) => {
-  try {
-    const questions = await getQuestionsQuery();
 
-      newArrayOfQuestionsObject = questions.rows.map(question => {
+  let newQuestionsArray = []
+  let updatedNames = []
+
+  try {
+    const questions = await getQuestions();
+
+    newQuestionsArray = questions.rows.map(question => {
 
         const newTips = splitString(question.tips__c)
         const newExpectations = splitString(question.expectations__c)
@@ -14,12 +19,19 @@ module.exports = async (req, res, next) => {
         return ({
           ...question, 
           tips__c: newTips,
-          expectations__c: newExpectations,
+          expectations__c: newExpectations
         })
       })
+
+      updatedNames = newQuestionsArray.map(question => ({
+        title: question.question__c,
+        tips: question.tips__c,
+        expectations: question.expectations__c,
+        wordsLimit: question.wordslimit__c,        
+      }))
     
     res.send({
-      questions: newArrayOfQuestionsObject,
+      questions: updatedNames,
       statusCode: 200,
     });
   } catch (err) {
