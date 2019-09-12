@@ -103,7 +103,7 @@ const  Page4 = (props) => {
  // not merged return (<popup component>)
 }
 catch {() => {
-     this.setState({ loading: false });
+  setLoading(false);
      Swal.fire({
   type: 'error',
   title: 'Oops...',
