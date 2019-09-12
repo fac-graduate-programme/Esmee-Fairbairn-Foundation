@@ -51,9 +51,10 @@ const  Page4 = (props) => {
   const [answer1, setAnswer1] = useState("");
   const [answer2, setAnswer2] = useState("");
   const [answer3, setAnswer3] = useState("");
-  const classes = useStyles()
+  const classes = useStyles();
   const theme = useTheme();
-  const [value, setValue] = React.useState(0)
+  const [value, setValue] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const  handleChange = (event, newValue) => {
     setValue(newValue)
@@ -75,7 +76,42 @@ const  Page4 = (props) => {
         text: 'Make sure you answered all questions without exceeding word limits!',
       })
     }
-  }
+
+   try {setLoading(true)
+    fetch("/api/v1/answers", {
+   method: "POST",
+   headers: { "content-type": "application/json" },
+   body: JSON.stringify({
+       data: {
+        answer1: answer1,
+         answer2: answer2,
+          answer3: answer3
+       }
+     })
+ }) .then(res => res.json())
+ 
+   .then(({ data, error }) => {
+     if (error) {
+      setLoading(false);
+    Swal.fire({
+   type: 'error',
+   title: 'Oops...',
+   text: 'Something went wrong. Please resubmit your application.',
+ }) }})
+ 
+ // return (<popup component>)
+}
+catch {() => {
+     this.setState({ loading: false });
+     Swal.fire({
+  type: 'error',
+  title: 'Oops...',
+  text: 'Something went wrong. Please resubmit your application.',
+})}}
+     
+     } 
+
+  
 
   return (
     <div className={classes.root}>
