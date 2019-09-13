@@ -4,7 +4,8 @@
   "description": "A prototype to increase efficency in the stage 1 applcantion process",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "buildtest": "NODE_ENV=test node server/db/testDB/setUpDB.js",
+    "test": "NODE_ENV=test node server/test/queries/*.test.js | tap-spec",
     "lint": "./node_modules/.bin/eslint ./server/**/*.js",
     "lint-fix": "npm run lint -- --fix",
     "start": "NODE_ENV=production npm run start:server",
@@ -32,12 +33,15 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^2.0.1",
-    "nodemon": "^1.19.2"
+    "nodemon": "^1.19.2",
+    "tap-spec": "^5.0.0",
+    "tape": "^4.11.0"
   },
   "dependencies": {
     "compression": "^1.7.4",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
-    "helmet": "^3.21.0"
+    "helmet": "^3.21.0",
+    "pg": "^7.12.1"
   }
 }
