@@ -1,0 +1,5 @@
+const connection = require('../config/connection');
+
+const getQuestions = () => connection.query('SELECT Question__c, wordsLimit__c, tips__c, expectations__c FROM  salesforce.Question__c')
+
+module.exports = getQuestions
