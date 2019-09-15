@@ -48,18 +48,10 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const  Page4 = (props) => {
-const { questions } = props;
-  // useEffect(() => {
-  //   axios('/api/v1/questions')
-  //     .then(res => {console.log('eeeeeeeee', res);
-  //      getQuestions(res.data.data)})
-  //     .catch(res => {})
-  // }, [])
-
+  const { questions } = props;
   const [answer1, setAnswer1] = useState("");
   const [answer2, setAnswer2] = useState("");
   const [answer3, setAnswer3] = useState("");
-  // const [questions, getQuestions] = useState([]);
   const classes = useStyles()
   const theme = useTheme();
   const [value, setValue] = React.useState(0)
