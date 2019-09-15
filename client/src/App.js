@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
+
+import axios from 'axios'
 
 import Page1 from './pages/Welcome'
 import Page2 from './pages/Note'
@@ -8,37 +10,37 @@ import logo from './assets/title-logo.svg'
 
 import './style.css'
 
-export default class App extends Component {
-  
-  state = {
-    pageNumber: 1
+const  App = () => {
+  const [pageNumber, setPageNumber] = useState(1);
+  const [questions, setQuestions] = useState([]);
+
+  useEffect(() => {
+  axios('/api/v1/questions')
+    .then(res => setQuestions(res.data.data))
+    .catch(res => {})
+  }, [])
+
+  const handleStaticButton = () => {
+    setPageNumber(pageNumber+1)
   }
 
-  handleStaticButton = () => {
-    this.setState((state) => {
-      return {pageNumber: state.pageNumber + 1}
-    })
-  }
+  return (
+    <div className="app">
+      <img src={logo} className='app-logo' />
 
-  render() {
-    const { pageNumber } = this.state;
-
-    return (
-      <div className="app">
-        <img src={logo} className='app-logo' />
-
-        {pageNumber !== 1 && pageNumber !==2 ? (
-          <h4 className='app-subTitle' >Refer to <a href='https://www.esmeefairbairn.org.uk/userfiles/Documents/Application%20Forms/GuidanceforGrantApplicants.pdf' target='_blank' className='app-subTitle--link'> application guidelines</a></h4>
-        ) : (
-          null
-        )}
-        
-        {pageNumber === 1 ? <Page1 handleStaticButton = {this.handleStaticButton}  /> : null}
-        {pageNumber === 2 ? <Page2 handleStaticButton = {this.handleStaticButton}  /> : null}
-        {pageNumber === 3 ? <Page3 handleStaticButton = {this.handleStaticButton}  /> : null}
-        {pageNumber === 4 ? <Page4 /> : null}
-        
-    </div>
-    )
-  }
+      {pageNumber !== 1 && pageNumber !==2 ? (
+        <h4 className='app-subTitle' >Refer to <a href='https://www.esmeefairbairn.org.uk/userfiles/Documents/Application%20Forms/GuidanceforGrantApplicants.pdf' target='_blank' className='app-subTitle--link'> application guidelines</a></h4>
+      ) : (
+        null
+      )}
+      
+      {pageNumber === 1 ? <Page1 handleStaticButton = {handleStaticButton}  /> : null}
+      {pageNumber === 2 ? <Page2 handleStaticButton = {handleStaticButton}  /> : null}
+      {pageNumber === 3 ? <Page3 handleStaticButton = {handleStaticButton}  /> : null}
+      {pageNumber === 4 ? <Page4 questions={questions} /> : null}
+      
+  </div>
+  )
 }
+
+export default App;

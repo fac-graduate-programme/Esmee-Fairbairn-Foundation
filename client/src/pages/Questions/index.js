@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 
 import Swal from 'sweetalert2'
 import PropTypes from 'prop-types'
@@ -49,19 +48,18 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const  Page4 = (props) => {
-
-  useEffect(() => {
-    axios('/api/v1/questions')
-      .then(res => {console.log('eeeeeeeee', res);
-       getQuestions(res.data.data)})
-      .catch(res => {})
-  }, [])
+const { questions } = props;
+  // useEffect(() => {
+  //   axios('/api/v1/questions')
+  //     .then(res => {console.log('eeeeeeeee', res);
+  //      getQuestions(res.data.data)})
+  //     .catch(res => {})
+  // }, [])
 
   const [answer1, setAnswer1] = useState("");
   const [answer2, setAnswer2] = useState("");
   const [answer3, setAnswer3] = useState("");
-  //44444444444444444444444444444444444444444444444444444444
-  const [questions, getQuestions] = useState([]);
+  // const [questions, getQuestions] = useState([]);
   const classes = useStyles()
   const theme = useTheme();
   const [value, setValue] = React.useState(0)
@@ -88,9 +86,24 @@ const  Page4 = (props) => {
     }
   }           
 
-  let TabsComponent = <h1>Loading ...</h1>;
-  if(questions.length > 0) {
-    TabsComponent = (<SwipeableViews
+
+  return (
+    <div className={classes.root}>
+      <AppBar position="static" color="default">
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          variant="fullWidth"
+          aria-label="full width tabs example"
+          classes={{ indicator: classes.indicator }}
+        >
+            <CustomTab label="Question 1" />
+            <CustomTab label="Question 2" />
+            <CustomTab label="Question 3" />
+            <CustomTab label="Review" />
+        </Tabs>
+      </AppBar>
+      <SwipeableViews
           axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
           index={value}
           onChangeIndex={handleChangeIndex}
@@ -166,26 +179,6 @@ const  Page4 = (props) => {
           </TabPanel>
 
         </SwipeableViews>
-        )
-  }
-
-  return (
-    <div className={classes.root}>
-      <AppBar position="static" color="default">
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          variant="fullWidth"
-          aria-label="full width tabs example"
-          classes={{ indicator: classes.indicator }}
-        >
-            <CustomTab label="Question 1" />
-            <CustomTab label="Question 2" />
-            <CustomTab label="Question 3" />
-            <CustomTab label="Review" />
-        </Tabs>
-      </AppBar>
-      { TabsComponent }
     </div>
   )
 }
