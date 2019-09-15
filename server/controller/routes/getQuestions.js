@@ -3,12 +3,10 @@ const  splitString = require('../utils/splitString')
 
 module.exports = async (req, res, next) => {
 
-  let newQuestionsArray = []
-  let updatedNames = []
-
   try {
-    const questions = await getQuestions();
-console.log('dddddddd', questions.rows);
+    const questions = await getQuestions()
+    
+    let newQuestionsArray = []
 
     newQuestionsArray = questions.rows.map(question => {
 
@@ -21,9 +19,11 @@ console.log('dddddddd', questions.rows);
           expectations__c: newExpectations
         })
       })
+      
+      let updatedNames = []
 
       updatedNames = newQuestionsArray.map(question => ({
-        title: question.question__c,
+        title: question.title__c,
         tips: question.tips__c,
         expectations: question.expectations__c,
         wordsLimit: question.wordslimit__c,        
