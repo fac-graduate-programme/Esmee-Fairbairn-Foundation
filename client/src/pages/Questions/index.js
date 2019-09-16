@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 
+import axios from 'axios'
 import Swal from 'sweetalert2'
 import PropTypes from 'prop-types'
 import Box from '@material-ui/core/Box'
@@ -67,9 +68,9 @@ const  Page4 = (props) => {
 
   const  handleSubmit = () => {
     
-    if(answer1.split(" ")[0] == "" || answer1.split(" ").length > questions[0].wordsLimit ||
-       answer2.split(" ")[0] == "" || answer2.split(" ").length > questions[1].wordsLimit ||
-       answer3.split(" ")[0] == "" || answer3.split(" ").length > questions[2].wordsLimit
+    if(answer1.split(" ")[0] === "" || answer1.split(" ").length > questions[0].wordsLimit ||
+       answer2.split(" ")[0] === "" || answer2.split(" ").length > questions[1].wordsLimit ||
+       answer3.split(" ")[0] === "" || answer3.split(" ").length > questions[2].wordsLimit
     ) {
       Swal.fire({
         type: 'error',
@@ -79,28 +80,28 @@ const  Page4 = (props) => {
     }
 
    try {setLoading(true)
-    fetch("/api/v1/answers", {
+    axios({
    method: "POST",
+   url: "/api/v1/answers",
    headers: { "content-type": "application/json" },
-   body: JSON.stringify({
-       data: {
+   data: {
         answer1: answer1,
-         answer2: answer2,
-          answer3: answer3
-       }
-     })
- }) .then(res => res.json())
- 
-   .then(({ data, error }) => {
+        answer2: answer2,
+        answer3: answer3
+     }
+ }) .then(({ data, error }) => {
      if (error) {
       setLoading(false);
     Swal.fire({
    type: 'error',
    title: 'Oops...',
    text: 'Something went wrong. Please resubmit your application.',
- }) }})
- 
+ })
+ }
  // not merged return (<popup component>)
+})
+ 
+
 }
 catch {() => {
   setLoading(false);
