@@ -5,20 +5,15 @@ import DialogActions from "@material-ui/core/DialogActions";
 import Button from "./../Button";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
-const PopUp = props => {
-  // Needs to be passed down as a prop
-  const [open, setOpen] = React.useState(false);
+const PopUp = ({open, setOpen, ...props}) => {
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
   const handleClose = () => {
     setOpen(false);
+     //redirect to page 1 after?
   };
-  // Will remove button from this component after people have tested it
+ 
   return (
     <div>
-      <button onClick={handleOpen}>Click Me</button>
       <Dialog
         open={open}
         onClose={handleClose}

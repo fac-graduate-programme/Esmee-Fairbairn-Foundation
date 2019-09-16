@@ -14,10 +14,11 @@ import CustomTab from '../../components/Tab'
 import Review from '../../components/Review'
 import Button from '../../components/Button'
 import TabBody from '../../components/TabBody'
+import Loading from '../../components/Loading'
+import Popup from '../../components/PopUp'
 import './style.css'
 
-const  TabPanel = (props) => {
-
+const TabPanel = props => {
   const { children, value, index, ...other } = props
 
   return (
@@ -36,84 +37,83 @@ const  TabPanel = (props) => {
 
 const useStyles = makeStyles(theme => ({
   root: {
-    margin: "0 auto",
-      ['@media (max-width:780px)']: {
-       width: '100%'
-      }
-    },
-    indicator: {
-    height: 0,
-    },
+    margin: '0 auto',
+    ['@media (max-width:780px)']: {
+      width: '100%'
+    }
+  },
+  indicator: {
+    height: 0
+  }
 }))
 
-const  Page4 = (props) => {
+const Page4 = props => {
+  const { questions } = props
+  const [answer1, setAnswer1] = useState('')
+  const [answer2, setAnswer2] = useState('')
+  const [answer3, setAnswer3] = useState('')
+  const classes = useStyles()
+  const theme = useTheme()
+  const [value, setValue] = useState(0)
+  const [loading, setLoading] = useState(false)
+  const [open, setOpen] = React.useState(false)
 
-  const { questions } = props;
-  const [answer1, setAnswer1] = useState("");
-  const [answer2, setAnswer2] = useState("");
-  const [answer3, setAnswer3] = useState("");
-  const classes = useStyles();
-  const theme = useTheme();
-  const [value, setValue] = useState(0);
-  const [loading, setLoading] = useState(false);
-// not merged loading component - render when loading true
-
-  const  handleChange = (event, newValue) => {
+  const handleChange = (event, newValue) => {
     setValue(newValue)
   }
 
-  const  handleChangeIndex = (index) => {
+  const handleChangeIndex = index => {
     setValue(index)
   }
 
-  const  handleSubmit = () => {
-    
-    if(answer1.split(" ")[0] === "" || answer1.split(" ").length > questions[0].wordsLimit ||
-       answer2.split(" ")[0] === "" || answer2.split(" ").length > questions[1].wordsLimit ||
-       answer3.split(" ")[0] === "" || answer3.split(" ").length > questions[2].wordsLimit
+  const handleSubmit = () => {
+    if (
+      answer1.split(' ')[0] === '' ||
+      answer1.split(' ').length > questions[0].wordsLimit ||
+      answer2.split(' ')[0] === '' ||
+      answer2.split(' ').length > questions[1].wordsLimit ||
+      answer3.split(' ')[0] === '' ||
+      answer3.split(' ').length > questions[2].wordsLimit
     ) {
       Swal.fire({
         type: 'error',
         title: 'Oops...',
-        text: 'Make sure you answered all questions without exceeding word limits!',
+        text:
+          'Make sure you answered all questions without exceeding word limits!'
       })
     }
 
-   try {setLoading(true)
+    setLoading(true)
     axios({
-   method: "POST",
-   url: "/api/v1/answers",
-   headers: { "content-type": "application/json" },
-   data: {
+      method: 'POST',
+      url: '/api/v1/answers',
+      headers: { 'content-type': 'application/json' },
+      data: {
         answer1: answer1,
         answer2: answer2,
         answer3: answer3
-     }
- }) .then(({ data, error }) => {
-     if (error) {
-      setLoading(false);
-    Swal.fire({
-   type: 'error',
-   title: 'Oops...',
-   text: 'Something went wrong. Please resubmit your application.',
- })
- }
- // not merged return (<popup component>)
-})
- 
-
-}
-catch {() => {
-  setLoading(false);
-     Swal.fire({
-  type: 'error',
-  title: 'Oops...',
-  text: 'Something went wrong. Please resubmit your application.',
-})}}
-     
-     } 
-
-  
+      }
+    })
+      .then(({ data, error }) => {
+        if (error) {
+          setLoading(false)
+          Swal.fire({
+            type: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong. Please resubmit your application.'
+          })
+        }
+        setOpen(true)
+      })
+      .catch(err => {
+        setLoading(false)
+        Swal.fire({
+          type: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong. Please resubmit your application.'
+        })
+      })
+  }
 
   return (
     <div className={classes.root}>
@@ -125,10 +125,10 @@ catch {() => {
           aria-label="full width tabs example"
           classes={{ indicator: classes.indicator }}
         >
-            <CustomTab label="Question 1" />
-            <CustomTab label="Question 2" />
-            <CustomTab label="Question 3" />
-            <CustomTab label="Review" />
+          <CustomTab label="Question 1" />
+          <CustomTab label="Question 2" />
+          <CustomTab label="Question 3" />
+          <CustomTab label="Review" />
         </Tabs>
       </AppBar>
       <SwipeableViews
@@ -136,20 +136,32 @@ catch {() => {
         index={value}
         onChangeIndex={handleChangeIndex}
       >
-
+        {loading ? <Loading className="answers__submition" /> : null}
+        <Popup open={open} setOpen={setOpen} />
         <TabPanel value={value} index={0} dir={theme.direction}>
           <TabBody
-            tips = {questions[0].tips}
-            question = {questions[0].title}
-            expectations = {questions[0].expectations}
-            wordsLimit= {questions[0].wordsLimit}
+            tips={questions[0].tips}
+            question={questions[0].title}
+            expectations={questions[0].expectations}
+            wordsLimit={questions[0].wordsLimit}
             onChangeAnswer={e => setAnswer1(e.target.value)}
           />
-          <div className='tabs'>
-            <Button  style={{backgroundColor: '#5C595B'}} label='back' leftIcon className='back'>
+          <div className="tabs">
+            <Button
+              style={{ backgroundColor: '#5C595B' }}
+              label="back"
+              leftIcon
+              className="back"
+            >
               back
             </Button>
-            <Button style={{backgroundColor: '#E60085'}} label='next' rightIcon onClick={()=> setValue(1)} className='next'>
+            <Button
+              style={{ backgroundColor: '#E60085' }}
+              label="next"
+              rightIcon
+              onClick={() => setValue(1)}
+              className="next"
+            >
               next
             </Button>
           </div>
@@ -157,17 +169,29 @@ catch {() => {
 
         <TabPanel value={value} index={1} dir={theme.direction}>
           <TabBody
-              tips = {questions[1].tips}
-              question = {questions[1].title}
-              expectations = {questions[1].expectations}
-              wordsLimit= {questions[1].wordsLimit}
-              onChangeAnswer={e => setAnswer2(e.target.value)}
+            tips={questions[1].tips}
+            question={questions[1].title}
+            expectations={questions[1].expectations}
+            wordsLimit={questions[1].wordsLimit}
+            onChangeAnswer={e => setAnswer2(e.target.value)}
           />
-          <div className='tabs'>
-            <Button  style={{backgroundColor: '#5C595B'}} label='back' leftIcon onClick={()=>setValue(0)} className='back'>
+          <div className="tabs">
+            <Button
+              style={{ backgroundColor: '#5C595B' }}
+              label="back"
+              leftIcon
+              onClick={() => setValue(0)}
+              className="back"
+            >
               back
             </Button>
-            <Button style={{backgroundColor: '#E60085'}} label='next' rightIcon onClick={()=> setValue(2)} className='next'>
+            <Button
+              style={{ backgroundColor: '#E60085' }}
+              label="next"
+              rightIcon
+              onClick={() => setValue(2)}
+              className="next"
+            >
               next
             </Button>
           </div>
@@ -175,17 +199,29 @@ catch {() => {
 
         <TabPanel value={value} index={2} dir={theme.direction}>
           <TabBody
-            tips = {questions[2].tips}
-            question = {questions[2].title}
-            expectations = {questions[2].expectations}
-            wordsLimit= {questions[2].wordsLimit}
+            tips={questions[2].tips}
+            question={questions[2].title}
+            expectations={questions[2].expectations}
+            wordsLimit={questions[2].wordsLimit}
             onChangeAnswer={e => setAnswer3(e.target.value)}
           />
-          <div className='tabs'>
-            <Button  style={{backgroundColor: '#5C595B'}} label='back' leftIcon onClick={()=> setValue(1)} className='back'>
+          <div className="tabs">
+            <Button
+              style={{ backgroundColor: '#5C595B' }}
+              label="back"
+              leftIcon
+              onClick={() => setValue(1)}
+              className="back"
+            >
               back
             </Button>
-            <Button style={{backgroundColor: '#E60085'}} label='next' rightIcon onClick={()=> setValue(3)} className='next'>
+            <Button
+              style={{ backgroundColor: '#E60085' }}
+              label="next"
+              rightIcon
+              onClick={() => setValue(3)}
+              className="next"
+            >
               next
             </Button>
           </div>
@@ -193,19 +229,34 @@ catch {() => {
 
         <TabPanel value={value} index={3} dir={theme.direction}>
           <Review
-            questions={[questions[0].title, questions[1].title, questions[2].title]}
+            questions={[
+              questions[0].title,
+              questions[1].title,
+              questions[2].title
+            ]}
             answers={[answer1, answer2, answer3]}
           />
-          <div className='tabs'>
-            <Button  style={{backgroundColor: '#5C595B', width:'49%'}} label='back' leftIcon onClick={()=> setValue(2)} className='back'>
+          <div className="tabs">
+            <Button
+              style={{ backgroundColor: '#5C595B', width: '49%' }}
+              label="back"
+              leftIcon
+              onClick={() => setValue(2)}
+              className="back"
+            >
               back
             </Button>
-            <Button style={{backgroundColor: 'green', width:'49%'}} label='submit' doneIcon className='done' onClick={handleSubmit}>
+            <Button
+              style={{ backgroundColor: 'green', width: '49%' }}
+              label="submit"
+              doneIcon
+              className="done"
+              onClick={handleSubmit}
+            >
               submit
             </Button>
           </div>
         </TabPanel>
-
       </SwipeableViews>
     </div>
   )
@@ -214,7 +265,7 @@ catch {() => {
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired
 }
 
-  export default Page4;
+export default Page4;
