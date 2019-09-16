@@ -1,9 +1,9 @@
 'use strict'
  
-var test = require('tape')
-var request = require('supertest')
+const test = require('tape')
+const request = require('supertest')
  
-var app = require('../../app.js')
+const app = require('../../app.js')
 
 const expectedResponse = {
     "data": [
@@ -57,8 +57,8 @@ test('GET /api/v1/questions', function (assert) {
       .expect(200)
       .expect('Content-Type', /json/)
       .end(function (err, res) {
-        var expectedThings = expectedResponse;
-        var actualThings = res.body
+        const expectedThings = expectedResponse;
+        const actualThings = res.body
    
         assert.error(err, 'No error')
         assert.same(actualThings, expectedThings, '/api/v1/question works fine!')
