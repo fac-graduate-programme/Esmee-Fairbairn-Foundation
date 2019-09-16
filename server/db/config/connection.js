@@ -1,6 +1,5 @@
-const {
-  Pool
-} = require("pg");
+const { Pool } = require('pg')
+// will not have access to app.js for every test ie. testing database queries 
 require("dotenv").config();
 
 let connectionString =
@@ -8,9 +7,11 @@ let connectionString =
   process.env.TEST_DATABASE_URL :
   process.env.DATABASE_URL;
 
-if (!connectionString) throw new Error("Database url must be set");
+if (!connectionString) throw new Error('DATABASE_URL is not found!');
 
-module.exports = new Pool({
+const options = {
   connectionString,
   ssl: !connectionString.includes("localhost")
-});
+}
+
+module.exports = new Pool(options)
