@@ -6,31 +6,21 @@ module.exports = async (req, res, next) => {
   try {
     const questions = await getQuestions()
     
-    let newQuestionsArray = []
-
-    newQuestionsArray = questions.rows.map(question => {
+    const newQuestionsArray = questions.rows.map(question => {
 
         const newTips = splitString(question.tips__c)
         const newExpectations = splitString(question.expectations__c)
 
         return ({
-          ...question, 
-          tips__c: newTips,
-          expectations__c: newExpectations
+          title: question.title__c,
+          tips: newTips,
+          expectations: newExpectations,
+          wordsLimit: question.wordslimit__c,
         })
       })
-      
-      let updatedNames = []
-
-      updatedNames = newQuestionsArray.map(question => ({
-        title: question.title__c,
-        tips: question.tips__c,
-        expectations: question.expectations__c,
-        wordsLimit: question.wordslimit__c,        
-      }))
-    
+          
     res.send({
-      data: updatedNames,
+      data: newQuestionsArray,
       statusCode: 200,
     });
   } catch (err) {

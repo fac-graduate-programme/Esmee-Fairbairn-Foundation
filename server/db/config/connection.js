@@ -4,7 +4,9 @@ const connectionString = process.env.DATABASE_URL;
 
 if (!connectionString) throw new Error('DATABASE_URL is not found!');
 
-module.exports = new Pool({
+const options = {
   connectionString,
   ssl: true,
-})
+}
+
+module.exports = new Pool(options)
