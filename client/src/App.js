@@ -18,8 +18,7 @@ const App = () => {
 
   useEffect(() => {
   axios('/api/v1/questions')
-    .then(res => {console.log(res.data.data);
-     setQuestions(res.data.data)})
+    .then(res => setQuestions(res.data.data))
     .catch(err => setError(err))
   }, [])
 
