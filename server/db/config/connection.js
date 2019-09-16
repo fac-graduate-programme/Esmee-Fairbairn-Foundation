@@ -6,5 +6,5 @@ if (!connectionString) throw new Error("Database url must be set");
 
 module.exports = new Pool({
   connectionString,
-  ssl: !connectionString.includes("localhost")
+  ssl: true
 });

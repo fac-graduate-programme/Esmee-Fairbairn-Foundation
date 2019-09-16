@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const postAnswers =require('./routes/postAnswers')
 
+const postAnswers =require('./routes/postAnswers')
 
 router.post("/answers", postAnswers);
 
