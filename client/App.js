@@ -1,8 +1,4 @@
-
-
 import React, { useState, useEffect } from 'react'
-
-import axios from 'axios'
 
 import Page1 from './pages/Welcome'
 import Page2 from './pages/Note'
