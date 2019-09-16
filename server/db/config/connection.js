@@ -1,10 +1,12 @@
-const { Pool } = require("pg");
+const { Pool } = require('pg')
 
-let connectionString = process.env.DATABASE_URL;
+const connectionString = process.env.DATABASE_URL;
 
-if (!connectionString) throw new Error("Database url must be set");
+if (!connectionString) throw new Error('DATABASE_URL is not found!');
 
-module.exports = new Pool({
+const options = {
   connectionString,
-  ssl: true
-});
+  ssl: true,
+}
+
+module.exports = new Pool(options)
