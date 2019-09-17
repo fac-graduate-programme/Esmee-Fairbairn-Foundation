@@ -1,5 +1,5 @@
-const dbConnection = require("../config/connection");
 const fs = require("fs");
+const dbConnection = require("../config/connection");
 
 const sql = fs.readFileSync(`${__dirname}/build.sql`).toString();
 

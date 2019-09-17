@@ -25,5 +25,4 @@ INSERT INTO salesforce.application__c (question_1__c,  question_2__c  ,question_
 INSERT INTO salesforce.questions__c ( title__c, wordsLimit__c, tips__c, expectations__c) VALUES 
 ('Test Question', '250', 'Test tips', 'Test expectations' );
 
-
 COMMIT;

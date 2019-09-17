@@ -1,7 +1,6 @@
 const { exec } = require("child_process");
 const runDbBuild = require("./build");
 
-
 console.log("Creating test database...");
 
 exec(
@@ -25,6 +24,6 @@ EOF`,
         console.log("Successfully populated test database");
         process.exit(0); 
       })
-      .catch(console.log(error));
+      .catch(console.log);
   }
 );
