@@ -37,6 +37,8 @@ const TabPanel = props => {
 
 const useStyles = makeStyles(theme => ({
   root: {
+    width: '700px',
+    maxWidth: '700px',
     margin: '0 auto',
     ['@media (max-width:780px)']: {
       width: '100%'
