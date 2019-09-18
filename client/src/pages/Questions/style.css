@@ -6,12 +6,16 @@
 
 .back {
   background-color: #5C595B;
+  background-color: '#5C595B';
 }
 
 .next {
   background-color: #E60085;
+  background-color: '#E60085'
 }
 
 .done {
   background-color: #08A500;
+  background-color: 'green';
+  width: '49%' 
 }

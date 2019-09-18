@@ -157,10 +157,10 @@ const Page4 = props => {
                 onChangeAnswer={e => setAnswer(index+1, e.target.value)}
               />
               <div className='tabs'>
-                <Button  style={{backgroundColor: '#5C595B'}} label='back' leftIcon onClick={()=> setValue(index-1)} className='back'>
+                <Button label='back' leftIcon onClick={()=> setValue(index-1)} className='back'>
                   back
                 </Button>
-                <Button style={{backgroundColor: '#E60085'}} label='next' rightIcon onClick={()=> setValue(index+1)} className='next'>
+                <Button label='next' rightIcon onClick={()=> setValue(index+1)} className='next'>
                   next
                 </Button>
               </div>
@@ -178,7 +178,6 @@ const Page4 = props => {
           />
           <div className="tabs">
             <Button
-              style={{ backgroundColor: '#5C595B', width: '49%' }}
               label="back"
               leftIcon
               onClick={() => setValue(2)}
