@@ -144,8 +144,8 @@ const Page4 = props => {
         index={value}
         onChangeIndex={handleChangeIndex}
       >
-        {loading ? <Loading className="answers__submition" /> : null}
-        <Popup open={open} setOpen={setOpen} />
+         {loading ? <Loading className="answers__submition" /> : null} 
+         <Popup open={open} setOpen={setOpen} /> 
         {questions.slice(0,3).map((question, index) => {
               return(<TabPanel value={value} index={index} dir={theme.direction}>
               <TabBody
