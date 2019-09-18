@@ -82,7 +82,6 @@ const Page4 = props => {
           'Make sure you answered all questions without exceeding word limits!'
       })
     }
-
     setLoading(true)
     axios({
       method: 'POST',
@@ -103,6 +102,7 @@ const Page4 = props => {
             text: 'Something went wrong. Please resubmit your application.'
           })
         }
+        setLoading(false)
         setOpen(true)
       })
       .catch(err => {
@@ -136,8 +136,7 @@ const Page4 = props => {
         index={value}
         onChangeIndex={handleChangeIndex}
       >
-        {loading ? <Loading className="answers__submition" /> : null}
-        <Popup open={open} setOpen={setOpen} />
+       
         <TabPanel value={value} index={0} dir={theme.direction}>
           <TabBody
             tips={questions[0].tips}
@@ -256,6 +255,8 @@ const Page4 = props => {
           </div>
         </TabPanel>
       </SwipeableViews>
+      {loading ? <Loading className="answers__submition" /> : null}
+        <Popup open={open} setOpen={setOpen} />
     </div>
   )
 }
