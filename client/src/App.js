@@ -21,6 +21,7 @@ const App = () => {
     .catch(err => setError(err))
   }, [])
 
+
   const handleStaticButton = () => {
     setPageNumber(pageNumber+1)
   }
@@ -44,10 +45,9 @@ const App = () => {
           text: 'Something went wrong, try again!',
         }) 
         : <Page4 questions={questions}/> : null}
-      
+
   </div>
   )
 }
 
 export default App;
-
