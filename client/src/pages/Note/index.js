@@ -61,7 +61,7 @@ export default props => {
           onChange={() => setGuideApproved(!guidlinesApproved)}
           checked={guidlinesApproved}
         />
-        <label for="checkbox"> I have read the application guidelines</label>
+        <label htmlFor="checkbox"> I have read the application guidelines</label>
       </div>
       <Button className="page2-btn" onClick={proceed}>
         PROCEED
@@ -69,3 +69,4 @@ export default props => {
     </div>
   );
 };
+
