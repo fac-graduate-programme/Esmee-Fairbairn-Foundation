@@ -136,8 +136,7 @@ const Page4 = props => {
         index={value}
         onChangeIndex={handleChangeIndex}
       >
-        {loading ? <Loading className="answers__submition" /> : null}
-        <Popup open={open} setOpen={setOpen} />
+      
         <TabPanel value={value} index={0} dir={theme.direction}>
           <TabBody
             tips={questions[0].tips}
@@ -175,7 +174,6 @@ const Page4 = props => {
           />
           <div className="tabs">
             <Button
-              style={{ backgroundColor: '#5C595B' }}
               label="back"
               leftIcon
               onClick={() => setValue(0)}
@@ -184,7 +182,6 @@ const Page4 = props => {
               back
             </Button>
             <Button
-              style={{ backgroundColor: '#E60085' }}
               label="next"
               rightIcon
               onClick={() => setValue(2)}
@@ -205,7 +202,6 @@ const Page4 = props => {
           />
           <div className="tabs">
             <Button
-              style={{ backgroundColor: '#5C595B' }}
               label="back"
               leftIcon
               onClick={() => setValue(1)}
@@ -214,7 +210,6 @@ const Page4 = props => {
               back
             </Button>
             <Button
-              style={{ backgroundColor: '#E60085' }}
               label="next"
               rightIcon
               onClick={() => setValue(3)}
@@ -236,7 +231,7 @@ const Page4 = props => {
           />
           <div className="tabs">
             <Button
-              style={{ backgroundColor: '#5C595B', width: '49%' }}
+              style={{ width: '49%' }}
               label="back"
               leftIcon
               onClick={() => setValue(2)}
@@ -245,7 +240,7 @@ const Page4 = props => {
               back
             </Button>
             <Button
-              style={{ backgroundColor: 'green', width: '49%' }}
+              style={{ width: '49%' }}
               label="submit"
               doneIcon
               className="done"
@@ -256,6 +251,8 @@ const Page4 = props => {
           </div>
         </TabPanel>
       </SwipeableViews>
+      {loading ? <Loading className="answers__submition" /> : null}
+        <Popup open={open} setOpen={setOpen} />
     </div>
   )
 }
