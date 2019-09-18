@@ -55,6 +55,14 @@ const  Page4 = (props) => {
   const theme = useTheme();
   const [value, setValue] = React.useState(0)
 
+  const setAnswer = (index, value) => {
+    switch(index) {
+      case 1 : setAnswer1(value); break;
+      case 2 : setAnswer2(value); break;
+      case 3 : setAnswer3(value); break;
+    }
+  }
+
   const  handleChange = (event, newValue) => {
     setValue(newValue)
   }
@@ -98,60 +106,25 @@ const  Page4 = (props) => {
         index={value}
         onChangeIndex={handleChangeIndex}
       >
-
-        <TabPanel value={value} index={0} dir={theme.direction}>
-          <TabBody
-            tips = {questions[0].tips}
-            question = {questions[0].title}
-            expectations = {questions[0].expectations}
-            wordsLimit= {questions[0].wordsLimit}
-            onChangeAnswer={e => setAnswer1(e.target.value)}
-          />
-          <div className='tabs'>
-            <Button  style={{backgroundColor: '#5C595B'}} label='back' leftIcon className='back'>
-              back
-            </Button>
-            <Button style={{backgroundColor: '#E60085'}} label='next' rightIcon onClick={()=> setValue(1)} className='next'>
-              next
-            </Button>
-          </div>
-        </TabPanel>
-
-        <TabPanel value={value} index={1} dir={theme.direction}>
-          <TabBody
-              tips = {questions[1].tips}
-              question = {questions[1].title}
-              expectations = {questions[1].expectations}
-              wordsLimit= {questions[1].wordsLimit}
-              onChangeAnswer={e => setAnswer2(e.target.value)}
-          />
-          <div className='tabs'>
-            <Button  style={{backgroundColor: '#5C595B'}} label='back' leftIcon onClick={()=>setValue(0)} className='back'>
-              back
-            </Button>
-            <Button style={{backgroundColor: '#E60085'}} label='next' rightIcon onClick={()=> setValue(2)} className='next'>
-              next
-            </Button>
-          </div>
-        </TabPanel>
-
-        <TabPanel value={value} index={2} dir={theme.direction}>
-          <TabBody
-            tips = {questions[2].tips}
-            question = {questions[2].title}
-            expectations = {questions[2].expectations}
-            wordsLimit= {questions[2].wordsLimit}
-            onChangeAnswer={e => setAnswer3(e.target.value)}
-          />
-          <div className='tabs'>
-            <Button  style={{backgroundColor: '#5C595B'}} label='back' leftIcon onClick={()=> setValue(1)} className='back'>
-              back
-            </Button>
-            <Button style={{backgroundColor: '#E60085'}} label='next' rightIcon onClick={()=> setValue(3)} className='next'>
-              next
-            </Button>
-          </div>
-        </TabPanel>
+        {questions.slice(0,3).map((question, index) => {
+              return(<TabPanel value={value} index={index} dir={theme.direction}>
+              <TabBody
+                tips = {question.tips}
+                question = {question.title}
+                expectations = {question.expectations}
+                wordsLimit= {question.wordsLimit}
+                onChangeAnswer={e => setAnswer(index+1, e.target.value)}
+              />
+              <div className='tabs'>
+                <Button  style={{backgroundColor: '#5C595B'}} label='back' leftIcon onClick={()=> setValue(index-1)} className='back'>
+                  back
+                </Button>
+                <Button style={{backgroundColor: '#E60085'}} label='next' rightIcon onClick={()=> setValue(index+1)} className='next'>
+                  next
+                </Button>
+              </div>
+            </TabPanel>)
+        })}
 
         <TabPanel value={value} index={3} dir={theme.direction}>
           <Review
