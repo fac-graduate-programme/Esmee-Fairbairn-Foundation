@@ -6,13 +6,28 @@ import Page3 from './pages/Tips'
 import Page4 from './pages/Questions'
 import logo from './assets/title-logo.svg'
 
+import ReactGA, { ga } from 'react-ga';
+
 import './style.css'
 
+
+const initializeAnalytics = () => {
+  ReactGA.initialize('UA-148075978-1');
+}
+
 const  App = () => {
+
+  initializeAnalytics();
+
   const [pageNumber, setPageNumber] = useState(1);
   const [questions, setQuestions] = useState([]);
 
   const handleStaticButton = () => {
+    ReactGA.event({
+      category: 'Navigation',
+      action: `Page Number ${pageNumber}`,
+      label: 'Button Clicked'
+    });
     setPageNumber(pageNumber+1)
   }
 
