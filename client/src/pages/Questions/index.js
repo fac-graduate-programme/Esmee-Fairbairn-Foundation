@@ -148,7 +148,6 @@ const Page4 = props => {
           />
           <div className="tabs">
             <Button
-              style={{ backgroundColor: '#5C595B' }}
               label="back"
               leftIcon
               className="back"
@@ -156,7 +155,6 @@ const Page4 = props => {
               back
             </Button>
             <Button
-              style={{ backgroundColor: '#E60085' }}
               label="next"
               rightIcon
               onClick={() => setValue(1)}
