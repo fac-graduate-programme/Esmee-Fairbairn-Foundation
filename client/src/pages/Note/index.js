@@ -42,7 +42,7 @@ export default class Page2 extends Component {
           </p>
           <br />
           You can find them
-          <a href='https://www.esmeefairbairn.org.uk/userfiles/Documents/Application%20Forms/GuidanceforGrantApplicants.pdf' target='_blank' className='page2-note-link' > here</a>.
+          <a href='https://www.esmeefairbairn.org.uk/userfiles/Documents/Application%20Forms/GuidanceforGrantApplicants.pdf' rel="noopener noreferrer" target='_blank' className='page2-note-link' > here</a>.
           <br />
           <br />
           <input type="checkbox" id='checkbox' name="check" onChange={this.handleCheckBox} checked={checked} />
