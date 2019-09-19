@@ -10,8 +10,8 @@ import './style.css'
 
  function QuizPage (props) {
 
-    const [trusteesValue, setTrusteesValue] = useState()
-    const [charityValue, setCharityValue] = useState()
+    const [trusteesValue, setTrusteesValue] = useState('')
+    const [charityValue, setCharityValue] = useState('')
     const [annualTurnover, setAnnualTurnover] = useState()
     const schema = yup.object().shape({
       trusteesValue: yup.string().required(),
