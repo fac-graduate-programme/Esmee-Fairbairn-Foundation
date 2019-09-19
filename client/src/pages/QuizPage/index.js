@@ -31,7 +31,7 @@ import './style.css'
         Swal.fire({
           type: 'error',
           title: 'Oops...',
-          text: 'Please fill all the questions!'
+          text: 'Please fill the three questions!'
         })
       }
       else {
@@ -41,7 +41,20 @@ import './style.css'
           title: 'Oops...',
           text: 'Annual Turnover should be a number!'
         })} else {
-          // go to fil the application
+          if(trusteesValue === 'trusteesNo') {
+            Swal.fire({
+              type: 'error',
+              title: 'Oops...',
+              text: 'We don\'t fund organisations with fewer than three non-executive trustees or directors.'
+            })
+          } 
+          if(charityValue === 'charityNo') {
+            Swal.fire({
+              type: 'error',
+              title: 'Oops...',
+              text: 'We don\'t fund charity!'
+            })
+          }
         }
       }
     }
@@ -54,13 +67,11 @@ import './style.css'
           <FormControlLabel value="trusteesYes" control={<Radio />} label="Yes" />
           <FormControlLabel value="trusteesNo" control={<Radio />} label="No" />
         </RadioGroup>
-       
         <p>3. Are you a charity</p>
         <RadioGroup aria-label="charity" name="charity" value={charityValue} onChange={handleCharityChange}>
           <FormControlLabel value="charityYes" control={<Radio />} label="Yes" />
           <FormControlLabel value="charityNo" control={<Radio />} label="No" />
         </RadioGroup>
-
         <Button className='page-submit' onClick={handleSubmit}>submit</Button>
     </div>)
 }
