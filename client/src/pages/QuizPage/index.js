@@ -71,7 +71,7 @@ import './style.css'
           <FormControlLabel value="charityYes" control={<Radio />} label="Yes" />
           <FormControlLabel value="charityNo" control={<Radio />} label="No" />
         </RadioGroup>
-        <Button className='page-submit' onClick={handleSubmit}>submit</Button>
+        <Button className='page-submit' onClick={handleSubmit}>proceed</Button>
     </div>)
 }
 
