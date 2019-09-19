@@ -3,7 +3,7 @@ import Swal from 'sweetalert2'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Radio from '@material-ui/core/Radio'
-
+import * as yup from 'yup'
 import Button from '../../components/Button'
 
 import './style.css'
@@ -13,6 +13,16 @@ import './style.css'
     const [trusteesValue, setTrusteesValue] = useState()
     const [charityValue, setCharityValue] = useState()
     const [annualTurnover, setAnnualTurnover] = useState()
+    const schema = yup.object().shape({
+      trusteesValue: yup.string().required(),
+      charityValue: yup.string().required(),
+      annualTurnover: yup.number().required(),
+    })
+    const requiredSchema = yup.object().shape({
+      trusteesValue: yup.string().matches(/Yes/),
+      charityValue: yup.string().matches(/Yes/),
+      annualTurnover: yup.number().min(50000),
+    })
 
     const  handleTrusteesChange = (event) => {
       setTrusteesValue(event.target.value);
@@ -27,36 +37,25 @@ import './style.css'
     }
 
     const handleSubmit = () => {
-      if(!trusteesValue || !charityValue || !annualTurnover) {
-        Swal.fire({
-          type: 'error',
-          title: 'Oops...',
-          text: 'Please fill the three questions!'
-        })
-      }
-      else {
-        if(isNaN(annualTurnover)) {
+      schema.validate({ trusteesValue, charityValue, annualTurnover}).catch(function(err) {
+        if(err) {
           Swal.fire({
-          type: 'error',
-          title: 'Oops...',
-          text: 'Annual Turnover should be a number!'
-        })} else {
-          if(trusteesValue === 'trusteesNo') {
-            Swal.fire({
-              type: 'error',
-              title: 'Oops...',
-              text: 'We don\'t fund organisations with fewer than three non-executive trustees or directors.'
-            })
-          } 
-          if(charityValue === 'charityNo') {
-            Swal.fire({
-              type: 'error',
-              title: 'Oops...',
-              text: 'We don\'t fund charity!'
-            })
-          }
+            type: 'error',
+            title: 'Oops...',
+            text: err.errors
+          })
         }
-      }
+      })
+
+      requiredSchema
+      .isValid({
+        trusteesValue, 
+        charityValue,
+        annualTurnover
+      })
+      .then(function(valid) {
+        //valid is boolean, when valid === true, then go to the QuestionsPage
+      });
     }
 
     return (<div className='page'>
