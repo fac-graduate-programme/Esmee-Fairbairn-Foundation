@@ -150,10 +150,7 @@ const Page4 = props => {
         {questions.slice(0,3).map((question, index) => {
               return(<TabPanel key={question.id} value={value} index={index} dir={theme.direction}>
               <TabBody
-                tips = {question.tips}
-                question = {question.title}
-                expectations = {question.expectations}
-                wordsLimit= {question.wordsLimit}
+                question = {question}
                 onChangeAnswer={e => setAnswer(index+1, e.target.value)}
               />
               <div className='tabs'>
