@@ -20,10 +20,10 @@ export default function Review(props) {
 
       <div>
         {
-          questions.map((question, index) => <>
-              <h1 className='review-question'>{question}</h1>
+          questions.map((question, index) => <div key={question.id}>
+              <h1 className='review-question'>{question.title}</h1>
               <p className='review-answer'>{answers[index]}</p>
-            </>
+            </div>
           )
         }
       </div>

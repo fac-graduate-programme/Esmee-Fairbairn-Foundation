@@ -170,9 +170,9 @@ const Page4 = props => {
         <TabPanel value={value} index={3} dir={theme.direction}>
           <Review
             questions={[
-              questions[0].title,
-              questions[1].title,
-              questions[2].title
+              questions[0],
+              questions[1],
+              questions[2]
             ]}
             answers={[answer1, answer2, answer3]}
           />
