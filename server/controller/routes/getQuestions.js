@@ -12,6 +12,7 @@ module.exports = async (req, res, next) => {
         const newExpectations = splitString(question.expectations__c)
 
         return ({
+          id: question.name,
           title: question.title__c,
           tips: newTips,
           expectations: newExpectations,
