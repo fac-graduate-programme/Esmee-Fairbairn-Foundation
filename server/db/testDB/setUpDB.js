@@ -16,6 +16,7 @@ EOF`,
       console.log(error);
     } else {
       console.log('Created database salesforcetest');
+      process.exit(0);
     }
   }
 );
