@@ -1,7 +1,7 @@
-const { exec } = require("child_process");
-const runDbBuild = require("./build");
+const { exec } = require('child_process');
+const runDbBuild = require('./build');
 
-console.log("Creating test database...");
+console.log('Creating test database...');
 
 exec(
   `psql <<EOF
@@ -15,13 +15,7 @@ EOF`,
     if (error) {
       console.log(error);
     } else {
-      console.log("Created database salesforcetest");
+      console.log('Created database salesforcetest');
     }
-    runDbBuild()
-      .then(() => {
-        console.log("Successfully populated test database");
-        process.exit(0); 
-      })
-      .catch(console.log);
   }
 );

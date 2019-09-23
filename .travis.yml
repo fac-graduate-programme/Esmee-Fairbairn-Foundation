@@ -21,6 +21,6 @@ services:
 
 before_script:
   - npm run buildtest
-  - psql postgres://salesforcetester:test@localhost:5432/salesforcetest CREATE SCHEMA salesforce; SET search_path TO salesforce, public;
+  
 script:
   - npm test
