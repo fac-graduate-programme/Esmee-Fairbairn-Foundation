@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import Swal from 'sweetalert2'
 
 import Page1 from './pages/Welcome'
 import Page2 from './pages/Note'
@@ -10,7 +12,6 @@ import ReactGA, { ga } from 'react-ga';
 
 import './style.css'
 
-
 const initializeAnalytics = () => {
   ReactGA.initialize('UA-148075978-1');
 }
@@ -20,7 +21,15 @@ const  App = () => {
   initializeAnalytics();
 
   const [pageNumber, setPageNumber] = useState(1);
+  const [error, setError] = useState();
   const [questions, setQuestions] = useState([]);
+
+  useEffect(() => {
+  axios('/api/v1/questions')
+    .then(res => setQuestions(res.data.data))
+    .catch(err => setError(err))
+  }, [])
+
 
   const handleStaticButton = () => {
     ReactGA.event({
@@ -44,8 +53,13 @@ const  App = () => {
       {pageNumber === 1 ? <Page1 handleStaticButton = {handleStaticButton}  /> : null}
       {pageNumber === 2 ? <Page2 handleStaticButton = {handleStaticButton}  /> : null}
       {pageNumber === 3 ? <Page3 handleStaticButton = {handleStaticButton}  /> : null}
-      {pageNumber === 4 ? <Page4 /> : null}
-      
+      {pageNumber === 4 ? error ?  Swal.fire({
+          type: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong, try again!',
+        }) 
+        : <Page4 questions={questions}/> : null}
+
   </div>
   )
 }
