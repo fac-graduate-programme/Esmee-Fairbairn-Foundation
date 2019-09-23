@@ -37,6 +37,8 @@ const TabPanel = props => {
 
 const useStyles = makeStyles(theme => ({
   root: {
+    width: '700px',
+    maxWidth: '700px',
     margin: '0 auto',
     ['@media (max-width:780px)']: {
       width: '100%'
@@ -66,6 +68,14 @@ const Page4 = props => {
     setValue(index)
   }
 
+  const setAnswer = (index, value) => {
+    switch(index) {
+      case 1 : setAnswer1(value); break;
+      case 2 : setAnswer2(value); break;
+      case 3 : setAnswer3(value); break;
+    }
+  }
+
   const handleSubmit = () => {
     if (
       answer1.split(' ')[0] === '' ||
@@ -82,37 +92,39 @@ const Page4 = props => {
           'Make sure you answered all questions without exceeding word limits!'
       })
     }
-
-    setLoading(true)
-    axios({
-      method: 'POST',
-      url: '/api/v1/answers',
-      headers: { 'content-type': 'application/json' },
-      data: {
-        answer1: answer1,
-        answer2: answer2,
-        answer3: answer3
-      }
-    })
-      .then(({ data, error }) => {
-        if (error) {
-          setLoading(false)
-          Swal.fire({
-            type: 'error',
-            title: 'Oops...',
-            text: 'Something went wrong. Please resubmit your application.'
-          })
-        }
-        setOpen(true)
-      })
-      .catch(err => {
-        setLoading(false)
+else{
+  setLoading(true)
+  axios({
+    method: 'POST',
+    url: '/api/v1/answers',
+    headers: { 'content-type': 'application/json' },
+    data: {
+      answer1: answer1,
+      answer2: answer2,
+      answer3: answer3
+    }
+  })
+    .then(({ data, error }) => {
+      setLoading(false)
+      if (error) {
         Swal.fire({
           type: 'error',
           title: 'Oops...',
           text: 'Something went wrong. Please resubmit your application.'
         })
+      } else{
+        setOpen(true)
+      }
+     
+    })
+    .catch(err => {
+      setLoading(false)
+      Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong. Please resubmit your application.'
       })
+    })}
   }
 
   return (
@@ -136,102 +148,35 @@ const Page4 = props => {
         index={value}
         onChangeIndex={handleChangeIndex}
       >
-      
-        <TabPanel value={value} index={0} dir={theme.direction}>
-          <TabBody
-            tips={questions[0].tips}
-            question={questions[0].title}
-            expectations={questions[0].expectations}
-            wordsLimit={questions[0].wordsLimit}
-            onChangeAnswer={e => setAnswer1(e.target.value)}
-          />
-          <div className="tabs">
-            <Button
-              label="back"
-              leftIcon
-              className="back"
-            >
-              back
-            </Button>
-            <Button
-              label="next"
-              rightIcon
-              onClick={() => setValue(1)}
-              className="next"
-            >
-              next
-            </Button>
-          </div>
-        </TabPanel>
-
-        <TabPanel value={value} index={1} dir={theme.direction}>
-          <TabBody
-            tips={questions[1].tips}
-            question={questions[1].title}
-            expectations={questions[1].expectations}
-            wordsLimit={questions[1].wordsLimit}
-            onChangeAnswer={e => setAnswer2(e.target.value)}
-          />
-          <div className="tabs">
-            <Button
-              label="back"
-              leftIcon
-              onClick={() => setValue(0)}
-              className="back"
-            >
-              back
-            </Button>
-            <Button
-              label="next"
-              rightIcon
-              onClick={() => setValue(2)}
-              className="next"
-            >
-              next
-            </Button>
-          </div>
-        </TabPanel>
-
-        <TabPanel value={value} index={2} dir={theme.direction}>
-          <TabBody
-            tips={questions[2].tips}
-            question={questions[2].title}
-            expectations={questions[2].expectations}
-            wordsLimit={questions[2].wordsLimit}
-            onChangeAnswer={e => setAnswer3(e.target.value)}
-          />
-          <div className="tabs">
-            <Button
-              label="back"
-              leftIcon
-              onClick={() => setValue(1)}
-              className="back"
-            >
-              back
-            </Button>
-            <Button
-              label="next"
-              rightIcon
-              onClick={() => setValue(3)}
-              className="next"
-            >
-              next
-            </Button>
-          </div>
-        </TabPanel>
+        
+        {questions.slice(0,3).map((question, index) => {
+              return(<TabPanel key={question.id} value={value} index={index} dir={theme.direction}>
+              <TabBody
+                question = {question}
+                onChangeAnswer={e => setAnswer(index+1, e.target.value)}
+              />
+              <div className='tabs'>
+                <Button label='back' leftIcon onClick={()=> setValue(index-1)} className='back'>
+                  back
+                </Button>
+                <Button label='next' rightIcon onClick={()=> setValue(index+1)} className='next'>
+                  next
+                </Button>
+              </div>
+            </TabPanel>)
+        })}
 
         <TabPanel value={value} index={3} dir={theme.direction}>
           <Review
             questions={[
-              questions[0].title,
-              questions[1].title,
-              questions[2].title
+              questions[0],
+              questions[1],
+              questions[2]
             ]}
             answers={[answer1, answer2, answer3]}
           />
           <div className="tabs">
             <Button
-              style={{ width: '49%' }}
               label="back"
               leftIcon
               onClick={() => setValue(2)}
@@ -250,6 +195,8 @@ const Page4 = props => {
             </Button>
           </div>
         </TabPanel>
+        {loading ? <Loading className="answers__submition" /> : null} 
+         <Popup open={open} setOpen={setOpen} /> 
       </SwipeableViews>
       {loading ? <Loading className="answers__submition" /> : null}
         <Popup open={open} setOpen={setOpen} />

@@ -1,3 +1,7 @@
+.tabBody {
+  text-align: left;
+}
+
 .tabBody-question {
   color: #000000;
   font-size: 1em;
