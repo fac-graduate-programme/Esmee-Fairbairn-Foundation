@@ -1,5 +1,4 @@
 const { exec } = require('child_process');
-const runDbBuild = require('./build');
 
 console.log('Creating test database...');
 

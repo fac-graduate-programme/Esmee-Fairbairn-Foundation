@@ -4,8 +4,9 @@
   "description": "A prototype to increase efficency in the stage 1 applcantion process",
   "main": "index.js",
   "scripts": {
-    "buildtest": "NODE_ENV=test node server/db/testDB/setUpDB.js && NODE_ENV=test node server/db/testDB/setUpSchema.js",
-    "test": "NODE_ENV=test tape ./server/test/**/*.js | tap-spec",
+    "buildtest": "NODE_ENV=local node server/db/testDB/setUpDB.js",
+    "test": "NODE_ENV=local tape ./server/test/**/*.js | tap-spec",
+    "test:travis": "NODE_ENV=test tape ./server/test/**/*.js | tap-spec",
     "lint": "./node_modules/.bin/eslint ./server/**/*.js",
     "lint-fix": "npm run lint -- --fix",
     "start": "NODE_ENV=production npm run start:server",

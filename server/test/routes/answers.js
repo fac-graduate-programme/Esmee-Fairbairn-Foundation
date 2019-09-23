@@ -11,7 +11,6 @@ test('Post /api/v1/answers', function (assert) {
       .expect(200)
       .expect('Content-Type', /json/)
       .end(function (err, res) {
-        console.log(res);
         assert.error(err, 'No error')
         assert.equal(res.body.data, 'ok', '/api/v1/answers works')
         assert.end();

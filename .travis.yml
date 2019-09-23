@@ -15,12 +15,6 @@ before_install:
 
 install:
   - npm install
-
-services:
-  - postgresql
-
-before_script:
-  - npm run buildtest
   
 script:
-  - npm test
+  - npm run test:travis
