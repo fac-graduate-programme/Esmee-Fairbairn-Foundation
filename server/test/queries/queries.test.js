@@ -33,7 +33,7 @@ test("add Test Answer", t => {
      .then(
        addAnswer(testAnswer)
          .then(response => {
-           t.equal(response.rows[0].id, 2, "response.name should be 2");
+           t.equal(response.rows[0].id, 2, "response.id should be 2");
            t.end();
          })
          .catch(error => t.error(error))
