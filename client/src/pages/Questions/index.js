@@ -92,37 +92,39 @@ const Page4 = props => {
           'Make sure you answered all questions without exceeding word limits!'
       })
     }
-
-    setLoading(true)
-    axios({
-      method: 'POST',
-      url: '/api/v1/answers',
-      headers: { 'content-type': 'application/json' },
-      data: {
-        answer1: answer1,
-        answer2: answer2,
-        answer3: answer3
-      }
-    })
-      .then(({ data, error }) => {
-        if (error) {
-          setLoading(false)
-          Swal.fire({
-            type: 'error',
-            title: 'Oops...',
-            text: 'Something went wrong. Please resubmit your application.'
-          })
-        }
-        setOpen(true)
-      })
-      .catch(err => {
-        setLoading(false)
+else{
+  setLoading(true)
+  axios({
+    method: 'POST',
+    url: '/api/v1/answers',
+    headers: { 'content-type': 'application/json' },
+    data: {
+      answer1: answer1,
+      answer2: answer2,
+      answer3: answer3
+    }
+  })
+    .then(({ data, error }) => {
+      setLoading(false)
+      if (error) {
         Swal.fire({
           type: 'error',
           title: 'Oops...',
           text: 'Something went wrong. Please resubmit your application.'
         })
+      } else{
+        setOpen(true)
+      }
+     
+    })
+    .catch(err => {
+      setLoading(false)
+      Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong. Please resubmit your application.'
       })
+    })}
   }
 
   return (
@@ -183,7 +185,7 @@ const Page4 = props => {
               back
             </Button>
             <Button
-              style={{ backgroundColor: 'green', width: '49%' }}
+              style={{ width: '49%' }}
               label="submit"
               doneIcon
               className="done"
@@ -196,6 +198,8 @@ const Page4 = props => {
         {loading ? <Loading className="answers__submition" /> : null} 
          <Popup open={open} setOpen={setOpen} /> 
       </SwipeableViews>
+      {loading ? <Loading className="answers__submition" /> : null}
+        <Popup open={open} setOpen={setOpen} />
     </div>
   )
 }
