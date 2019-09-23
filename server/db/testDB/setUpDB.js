@@ -7,10 +7,12 @@ exec(
   `psql <<EOF
 \\x
 CREATE DATABASE salesforcetest; 
-CREATE SCHEMA salesforce;
-SET search_path TO salesforce, public;
 CREATE USER salesforcetester WITH SUPERUSER PASSWORD 'test';
 ALTER DATABASE salesforcetest OWNER TO salesforcetester;
+\q
+psql postgres://salesforcetester:test@localhost:5432/salesforcetest 
+CREATE SCHEMA salesforce;
+SET search_path TO salesforce, public;
 EOF`,
 
   error => {
