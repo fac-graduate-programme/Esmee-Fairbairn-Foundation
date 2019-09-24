@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import * as yup from 'yup'
@@ -7,12 +7,17 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Radio from '@material-ui/core/Radio'
 import Button from '../Button'
 
+import ApolloClient from 'apollo-boost'
+import { gql } from 'apollo-boost'
+
 export default (props) =>{
 
     const [charityBase, setCharityBase] = useState("")
     const [charityName, setCharityName] = useState("")
     const [validateByAPI, setValidatedByAPI] = useState(false)
+    const [auth, setAuth] = useState("")
     const [loading, setLoading] = useState(false);
+    const [error,setError] = useState(false)
 
     const setSateCharityBase = string => {
     setCharityBase(string)
@@ -24,8 +29,23 @@ export default (props) =>{
     })
 
 
+  const client = new ApolloClient({
+    uri: 'https://charitybase.uk/api/graphql',
+    headers: {
+      Authorization: `Apikey ${auth}`
+    }
+  })
 
-    const handleValidation = async () => { 
+    useEffect(() => {
+      axios('/api/v1/charitybase')
+      .then(res => setAuth(res.data.data))
+      .catch(err => setError(err))
+    }, [])
+   
+     
+
+    const handleValidation = async (name) => { 
+      console.log(auth)
     const valid= await requiredSchema.isValid({
         charityBase, charityName
       })
@@ -37,14 +57,29 @@ export default (props) =>{
         text: "Please re enter your organisation's name. Note we can only validate charites registered in England or Wales."
       })} else {
         setLoading(true)
-        axios({
-          method: 'POST',
-          url: '/api/v1/charitybase',
-          headers: { 'content-type': 'application/json' },
-          data: {
-           charityName: charityName
-          }
-        })
+
+        client
+        .query({
+          query: gql`{
+            CHC {
+            
+                getCharities(filters:{
+                    search: "test"
+                }) {
+                    count
+                    list(limit: 5){
+                        id
+                        names {
+                            value
+                        }
+                        finances {income}
+                        trustees {name}
+                    }
+                }
+            }
+            }`
+      
+      })
           .then(({ data, error }) => {
             setLoading(false)
             if (error) {
@@ -54,6 +89,7 @@ export default (props) =>{
                 text: "Something went wrong. Please resubmit your organisation's name."
               })
             } else{
+              console.log(data)
             //success
             }
            
