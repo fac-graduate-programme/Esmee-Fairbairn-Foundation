@@ -6,6 +6,7 @@ import Page1 from './pages/Welcome'
 import Page2 from './pages/Note'
 import Page3 from './pages/Tips'
 import Page4 from './pages/Questions'
+import Quizpage from './pages/QuizPage'
 import logo from './assets/title-logo.svg'
 
 import './style.css'
@@ -39,7 +40,8 @@ const App = () => {
       {pageNumber === 1 ? <Page1 handleStaticButton = {handleStaticButton}  /> : null}
       {pageNumber === 2 ? <Page2 handleStaticButton = {handleStaticButton}  /> : null}
       {pageNumber === 3 ? <Page3 handleStaticButton = {handleStaticButton}  /> : null}
-      {pageNumber === 4 ? error ?  Swal.fire({
+      {pageNumber === 4 ? <Quizpage handleStaticButton = {handleStaticButton}  /> : null}
+      {pageNumber === 5 ? error ?  Swal.fire({
           type: 'error',
           title: 'Oops...',
           text: 'Something went wrong, try again!',
