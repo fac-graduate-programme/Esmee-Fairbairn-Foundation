@@ -5,6 +5,7 @@ const getQuestions = require("../../db/queries/getQuestions");
 const addAnswer = require("../../db/queries/postAnswers");
 
 const testResponse = {
+  name: 1,
   title__c: "Test Question",
   wordslimit__c: 250,
   tips__c: "Test tips",
@@ -33,7 +34,7 @@ test("add Test Answer", t => {
      .then(
        addAnswer(testAnswer)
          .then(response => {
-           t.equal(response.rows[0].id, 2, "response.name should be 2");
+           t.equal(response.rows[0].id, 2, "response.id should be 2");
            t.end();
          })
          .catch(error => t.error(error))
