@@ -5,6 +5,7 @@ const getQuestions = require("../../db/queries/getQuestions");
 const addAnswer = require("../../db/queries/postAnswers");
 
 const testResponse = {
+  name: 1,
   title__c: "Test Question",
   wordslimit__c: 250,
   tips__c: "Test tips",
