@@ -13,6 +13,7 @@ import Radio from '@material-ui/core/Radio'
 import Button from '../Button'
 import List from './list'
 
+import "./style.css";
 
 export default (props) =>{
 
@@ -53,7 +54,7 @@ export default (props) =>{
 
 
     const handleValidation = async (name) => { 
-      console.log(auth)
+
     const valid= await requiredSchema.isValid({ regestered, charityName })
       if(!valid) {
         Swal.fire({
@@ -115,9 +116,13 @@ export default (props) =>{
           <FormControlLabel value='false' control={<Radio />} label="No" />
         </RadioGroup>
         <p>1. What is your Charity's Name?</p>
-        <input type='text' className='page-annualTurnover' placeholder='Enter a value' onChange={e => setCharityName(e.target.value)} />
-        <p>If you answered yes to the first question you can validate your answers to the following questions </p>
-        <Button className='page-submit' onClick={handleValidation}>validate</Button>
+        <input type='text' className='charity-name_input' placeholder='Enter a value' onChange={e => setCharityName(e.target.value)} />
+        <Button
+              style={{ width: '49%' }}
+              label="search"
+              className="back secondary"
+              onClick={handleValidation}
+           >Search</Button>
         { !loading && charityBaseResult ? <List charities={charityBaseResult} setValidatedByAPI={setValidatedByAPI} setSelectedCharity={setSelectedCharity} loading={loading}/> : null}
         </>
       )
