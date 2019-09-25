@@ -50,15 +50,16 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Page4 = props => {
+
   const { questions } = props
   const [answer1, setAnswer1] = useState('')
   const [answer2, setAnswer2] = useState('')
   const [answer3, setAnswer3] = useState('')
-  const classes = useStyles()
-  const theme = useTheme()
   const [value, setValue] = useState(0)
   const [loading, setLoading] = useState(false)
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = useState(false)
+  const classes = useStyles()
+  const theme = useTheme()
 
   const handleChange = (event, newValue) => {
     setValue(newValue)
@@ -156,7 +157,7 @@ else{
                 onChangeAnswer={e => setAnswer(index+1, e.target.value)}
               />
               <div className='tabs'>
-                <Button label='back' leftIcon onClick={()=> setValue(index-1)} className='back'>
+                <Button label='back' hide={index} leftIcon onClick={()=> setValue(index-1)} className='back'>
                   back
                 </Button>
                 <Button label='next' rightIcon onClick={()=> setValue(index+1)} className='next'>
