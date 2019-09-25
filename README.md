@@ -9,11 +9,11 @@
 - [Dylan](https://github.com/Dalmano)
 
 ## Why:question:
-Esmee Fairbairn Foundation faces many problem when deciding which organization deserves to get the fund it needs to support some activities. Many organizations fill an application to get he fund, but most of them did not read the guidlines that the organization set to know who really deserve to get the fund.
+Esmee Fairbairn Foundation faces many difficulties when deciding which organization deserves to get the fund it requires to support some projects. Many organizations fill an application to get the fund, however, most of them did not read and abide by the guidelines. These are set by the organization to get a better understanding of who qualifies for the funding. 
 ### Problem statement:fire:
-Our client needs to add guides for each question, so the user can read them and apply these guides when he answer the questions.  Also, the quiz is added, so the user cannot start filling the application if he didn't match the organization rules
+Our client needs to add guides for each question, so the user can read them and apply these guidelines to the answered questions. Also, a quiz is added, before the application. This is so the user cannot start filling the application if they have not matched the organizations' criteria. 
 ### The solution :boom:
-We created a quiz page contains three questions and we validate the answers of these questions. Based on these answers, the user can know if he is able to cintinue with the application or not. If so, then the user can coninue with the application and read the quieds he should follow to answer each question. This will simlify the work should the manager do to decide if this user deserve the fund or not.
+We created a quiz page containing three questions and validate the answers. Based on these answers, the user will know if they are eligible to continue with the application or not. If so, the user can continue with the application, following the guidelines to answer each question. These answers are then sent our database and then on to Salesforce. This will simplify the work-load, should the grant-manager decide the applicant deserves the funding or not. The aim is to increase the overall quality of applications.
 
 ## Tech stack:computer:
 :bulb:Creat-react-app 
@@ -34,23 +34,25 @@ We created a quiz page contains three questions and we validate the answers of t
 - Environment variables were changed
 - It is currently deployed on Heroku
 ### Maintenance:hammer:
-- The project now is deployed and running without problems
+- The project is now deployed and running without problems
+- The next step is futher user testing
 - Any new featuers can be added in future
 
 
 ## Ideas for the next sprint:thought_balloon:
+- Add Login Feature
 - Unique questions for particular applications
 - Make logo and reference guidelines so it can be populated through Salesforce
-- Upload a snapshot of the application as a reference. Previously done with a word document as everything is editable in Salesforce. Incase someone incorrectly edited it ( unlikely will do)
+- Upload a snapshot of the application as a reference. Previously done with a word document as everything is editable in Salesforce. Incase someone incorrectly edited it in salesforce 
 # Project Timeline:clock1:
 
 ### Week 1: Design Week :triangular_ruler:
 #### Understand the problem
-First thing, we tried to understand the main problem that the organization faced. we browsed their website and understand how the current process is running and what is the problem with it. After doing this, we was able to figure out how we can give a solution for the problem that the organization has.
+First, we tried to understand the main problem that the organization faced. We browsed their website and understand how the current process is running and what is the problem with it. Initially, we thought our main target problem would be with successful applications. However, from looking at their data we found that if an application was successful this was usually on the first attempt. From the data, we noticed there were a collection of repeated failed applications from the same organisations. After doing this, we were able to figure out how we can give a solution to the problem that the organization has.
 #### Figma prototype
-We created the figma prototype to simulate how the website will look like. We tried to make the design as simple as possible, and look similar to existing website.
+We created the Figma prototype to simulate what the website looks like. We tried to make the design as simple as possible, and look similar to the existing website. The main aspects of our build weren't outward facing but rather a new internal system.
 ### Week 2: Sprint 001 :mag:
-we wrote issues on GitHub to organize the work. We started with the front-end. Each issue contains the component should be done as we designed in Figma .We used create-react-app to build our application.
+We wrote issues on GitHub to organize the work and started with the front-end. Each issue containing a component was done as we designed in Figma. We used create-react-app to build our application.
 
 Main new things we learned:
 - Use Material-UI Reatc framework: to use built component
@@ -64,5 +66,7 @@ Main new things we learned:
   3. We created a connection to connect between salesforce and our application
 - Heroku-connect
     1. We used heroku-connect to connect between our application and the data stored in salesforce 
+- Google Analytics
+    1. We used Google Analytics to capture the data of the user, in terms of user behaviour and navigation. 
 
 
