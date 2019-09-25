@@ -32,6 +32,11 @@ const App = () => {
   const handleQuizResult = (isValid) => {
     
     if(isValid) {
+      Swal.fire({
+        type: 'success',
+        title: 'Nice',
+        text: 'Thank you for submitting the Quiz. Please fill the application to get the fund',
+      }) 
        setShowApp(true)
        setShowQuiz(false)
     } else {
