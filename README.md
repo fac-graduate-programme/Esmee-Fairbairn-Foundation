@@ -43,7 +43,8 @@ We created a quiz page containing three questions and validate the answers. Base
 - Add Login Feature
 - Unique questions for particular applications
 - Make logo and reference guidelines so it can be populated through Salesforce
-- Upload a snapshot of the application as a reference. Previously done with a word document as everything is editable in Salesforce. Incase someone incorrectly edited it in salesforce 
+- Upload a snapshot of the application as a reference. Previously done with a word document as everything is editable in Salesforce. Incase someone incorrectly edited it in salesforce.
+- Show number of words left for each answer while the user is typing.
 # Project Timeline:clock1:
 
 ### Week 1: Design Week :triangular_ruler:
