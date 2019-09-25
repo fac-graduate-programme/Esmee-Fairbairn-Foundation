@@ -37,7 +37,19 @@ import './style.css'
     }
 
     const handleSubmit = () => {
-      schema.validate({ trusteesValue, charityValue, annualTurnover}).catch(function(err) {
+      schema.validate({ trusteesValue, charityValue, annualTurnover})
+        .then(()=> {
+            requiredSchema
+            .isValid({
+              trusteesValue, 
+              charityValue,
+              annualTurnover
+            })
+            .then(function(valid) {
+              result(valid)
+            });
+        })
+        .catch(function(err) {
         if(err) {
           Swal.fire({
             type: 'error',
@@ -46,16 +58,6 @@ import './style.css'
           })
         }
       })
-
-      requiredSchema
-      .isValid({
-        trusteesValue, 
-        charityValue,
-        annualTurnover
-      })
-      .then(function(valid) {
-         result(valid)
-      });
     }
 
     return (<div className='page'>
