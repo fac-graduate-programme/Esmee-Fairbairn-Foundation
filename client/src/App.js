@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import ReactGA, { ga } from 'react-ga'
 
 import WelcomePage from './pages/Welcome'
 import NotePage from './pages/Note'
@@ -8,8 +9,6 @@ import TipsPage from './pages/Tips'
 import QuestionsPage from './pages/Questions'
 import QuizPage from './pages/QuizPage'
 import logo from './assets/title-logo.svg'
-
-import ReactGA, { ga } from 'react-ga';
 
 import './style.css'
 
@@ -73,17 +72,25 @@ const  App = () => {
       )}
       
      {showQuiz == true ? <QuizPage result={handleQuizResult} /> : null}
-     {showApp  == true ? <div>
-      {pageNumber === 1 ? <WelcomePage handleStaticButton = {handleStaticButton}  /> : null}
-      {pageNumber === 2 ? <NotePage handleStaticButton = {handleStaticButton}  /> : null}
-      {pageNumber === 3 ? <TipsPage handleStaticButton = {handleStaticButton}  /> : null}
-      {pageNumber === 4 ? error ?  Swal.fire({
-          type: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong, try again!',
-        }) 
-        : <QuestionsPage questions={questions}/> : null}
-      </div> : null}
+     {showApp  == true ? (function(pageNumber) {  
+      switch(pageNumber) {
+        case 1:
+          return <WelcomePage handleStaticButton = {handleStaticButton}  />
+        case 2:
+          return <NotePage handleStaticButton = {handleStaticButton}  />
+        case 3:
+          return <TipsPage handleStaticButton = {handleStaticButton}  />
+        case 4: {
+          if (error) {
+            Swal.fire({
+              type: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong, try again!',
+            }) 
+          } else return <QuestionsPage questions={questions}/>
+        }
+      }
+    })(pageNumber): null}
   </div>
   )
 }
