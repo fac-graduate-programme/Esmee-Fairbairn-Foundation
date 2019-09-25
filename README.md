@@ -55,6 +55,7 @@ we wrote issues on GitHub to organize the work. We started with the front-end. E
 Main new things we learned:
 - Use Material-UI Reatc framework: to use built component
 - Overwrite Material-UI design, so we can build component look like our Figma design
+- Using Yup for validation
 ### Week 3: Sprint 002 :bell:
 Main new things we learned:
 - CRM 
@@ -63,4 +64,5 @@ Main new things we learned:
   3. We created a connection to connect between salesforce and our application
 - Heroku-connect
     1. We used heroku-connect to connect between our application and the data stored in salesforce 
+
 
