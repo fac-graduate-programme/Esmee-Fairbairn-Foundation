@@ -100,30 +100,28 @@ export default (props) =>{
             }
            
           })
-      }
-      
-      
+      }  
       
       }
        
     
-    
+  
       return  (
         <>
-         <p> 1. Are you registered as a charity with the charity commission in England or Wales? </p>  
+         <p className='quiz_qiestions'> 1. Are you registered as a charity with the charity commission in England or Wales? </p>  
    <RadioGroup aria-label="radio buttons for" name="trustees" value={regestered} onChange={(event)=>{regesteredWithAPI(event.target.value)}}>
           <FormControlLabel value='true' control={<Radio />} label="Yes" />
           <FormControlLabel value='false' control={<Radio />} label="No" />
         </RadioGroup>
-        <p>1. What is your Charity's Name?</p>
-        <input type='text' className='charity-name_input' placeholder='Enter a value' onChange={e => setCharityName(e.target.value)} />
+        <p className='quiz_qiestions'>2. What is your Charity's Name?</p>
+        <input type='text' className='charity-name_input' placeholder='Enter a value' value={charityName} onChange={e => setCharityName(e.target.value)} />
         <Button
               style={{ width: '49%' }}
               label="search"
               className="back secondary"
               onClick={handleValidation}
            >Search</Button>
-        { !loading && charityBaseResult ? <List charities={charityBaseResult} setValidatedByAPI={setValidatedByAPI} setSelectedCharity={setSelectedCharity} loading={loading}/> : null}
+        { !loading && charityBaseResult ? <List charities={charityBaseResult} setCharity={setCharityName} setValidatedByAPI={setValidatedByAPI} setSelectedCharityNum={setSelectedCharity} loading={loading}/> : null}
         </>
       )
     }

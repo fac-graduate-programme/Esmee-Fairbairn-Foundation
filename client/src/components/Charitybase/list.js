@@ -1,8 +1,13 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 
-const ItemList = ({ charities, loading }) => {
-  if (loading || charities === null) {
+const ItemList = ({ charities, loading, setCharity, setSelectedCharityNum }) => {
+const [close, setClose] = useState(false)
+if (close) {
+  return null
+}
+
+  if (loading || close || charities === null) {
     return 'Loading....'
   }
   if (charities.length === 0) {
@@ -10,10 +15,12 @@ const ItemList = ({ charities, loading }) => {
   }
 
   const clickeditem = e => {
-      console.log(e.target.value)
+    setCharity(charities[e.target.value].names[0].value)
+
+    setClose(true)
   }
   return (
-    <ul data-testid='charities-list'>
+    <ul className='charities-list'>
       {charities.map((charity, index) => (
         <li key={charity.id} value={index} onClick={clickeditem}>{charity.names[0].value} </li>
       ))}

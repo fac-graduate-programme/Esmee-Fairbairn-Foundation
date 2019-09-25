@@ -5,6 +5,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Radio from '@material-ui/core/Radio'
 import * as yup from 'yup'
 import Button from '../../components/Button'
+import CharitybaseComponent from '../../components/Charitybase'
 
 import './style.css'
 
@@ -59,14 +60,15 @@ import './style.css'
     }
 
     return (<div className='page'>
-        <p>1. What is you annual turnover?</p>
+        <CharitybaseComponent />
+        <p className='quiz_qiestions'>3. What is you annual turnover?</p>
         <input type='text' className='page-annualTurnover' placeholder='Enter a value' onChange={handleAnnualTurnover} />
-        <p>2. Do you have a minimum of 3 trustees?</p>   
+        <p className='quiz_qiestions'>4. Do you have a minimum of 3 trustees?</p>   
         <RadioGroup aria-label="trustees" name="trustees" value={trusteesValue} onChange={handleTrusteesChange}>
           <FormControlLabel value="trusteesYes" control={<Radio />} label="Yes" />
           <FormControlLabel value="trusteesNo" control={<Radio />} label="No" />
         </RadioGroup>
-        <p>3. Are you a charity</p>
+        <p className='quiz_qiestions'>5. Are you a charity</p>
         <RadioGroup aria-label="charity" name="charity" value={charityValue} onChange={handleCharityChange}>
           <FormControlLabel value="charityYes" control={<Radio />} label="Yes" />
           <FormControlLabel value="charityNo" control={<Radio />} label="No" />

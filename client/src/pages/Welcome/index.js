@@ -1,7 +1,6 @@
 import React from 'react'
 
 import Button from '../../components/Button'
-import Comp from '../../components/Charitybase'
 
 import "./style.css"
 
@@ -11,7 +10,6 @@ export default function Page1(props) {
 
   return (
     <div className='page1'>
-      <Comp />
       <h1 className='page1-title'>Welcome,</h1>
       <br />
       <br />

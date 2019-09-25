@@ -2,3 +2,29 @@
     text-transform: none;
     font-size: 1em;
 }
+
+.charities-list{
+    background-color: white;
+    border: 2px solid #C2C2C2;
+    list-style: none; 
+    border-radius: 5px;
+    width: 78%;
+    margin-left: 1em; 
+}
+
+.charities-list li{
+   padding: 5px;
+   border-top: solid 1px #C2C2C2; 
+}
+.charities-list li:hover{
+    background-color: #C2C2C2;
+   
+ }
+.charity-name_input{
+    border-radius: 5px;
+    background-color: #C2C2C2;
+    padding-left: 3px;
+    border: none;
+    height: 30px;
+    width: 80%;
+}

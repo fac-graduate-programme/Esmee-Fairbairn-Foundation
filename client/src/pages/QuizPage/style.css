@@ -9,3 +9,9 @@
 .page-submit {
     background-color: #E60085;
 }
+
+.quiz_qiestions {
+    text-align: left;
+    margin: 1em 0px;
+    font-size: 1em;
+}
