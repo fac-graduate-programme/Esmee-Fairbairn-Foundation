@@ -9,7 +9,7 @@ import Button from '../../components/Button'
 import './style.css'
 
  function QuizPage (props) {
-
+    const { result } = props;
     const [trusteesValue, setTrusteesValue] = useState('')
     const [charityValue, setCharityValue] = useState('')
     const [annualTurnover, setAnnualTurnover] = useState()
@@ -37,7 +37,19 @@ import './style.css'
     }
 
     const handleSubmit = () => {
-      schema.validate({ trusteesValue, charityValue, annualTurnover}).catch(function(err) {
+      schema.validate({ trusteesValue, charityValue, annualTurnover})
+        .then(()=> {
+            requiredSchema
+            .isValid({
+              trusteesValue, 
+              charityValue,
+              annualTurnover
+            })
+            .then(function(valid) {
+              result(valid)
+            });
+        })
+        .catch(function(err) {
         if(err) {
           Swal.fire({
             type: 'error',
@@ -46,16 +58,6 @@ import './style.css'
           })
         }
       })
-
-      requiredSchema
-      .isValid({
-        trusteesValue, 
-        charityValue,
-        annualTurnover
-      })
-      .then(function(valid) {
-        //valid is boolean, when valid === true, then go to the QuestionsPage
-      });
     }
 
     return (<div className='page'>
