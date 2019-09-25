@@ -13,7 +13,7 @@ import ReactGA, { ga } from 'react-ga';
 import './style.css'
 
 const initializeAnalytics = () => {
-  ReactGA.initialize('UA-148075978-1');
+  ReactGA.initialize('UA-148722706-1');
 }
 
 const  App = () => {
