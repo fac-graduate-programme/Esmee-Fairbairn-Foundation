@@ -195,8 +195,6 @@ else{
             </Button>
           </div>
         </TabPanel>
-        {loading ? <Loading className="answers__submition" /> : null} 
-         <Popup open={open} setOpen={setOpen} /> 
       </SwipeableViews>
       {loading ? <Loading className="answers__submition" /> : null}
         <Popup open={open} setOpen={setOpen} />

@@ -10,7 +10,7 @@ import CharitybaseComponent from '../../components/Charitybase'
 import './style.css'
 
  function QuizPage (props) {
-
+    const { result } = props;
     const [trusteesValue, setTrusteesValue] = useState('')
     const [charityValue, setCharityValue] = useState('')
     const [annualTurnover, setAnnualTurnover] = useState(0)
@@ -51,7 +51,19 @@ import './style.css'
     }
 
     const handleSubmit = () => {
-      schema.validate({ trusteesValue, charityValue, annualTurnover}).catch(function(err) {
+      schema.validate({ trusteesValue, charityValue, annualTurnover})
+        .then(()=> {
+            requiredSchema
+            .isValid({
+              trusteesValue, 
+              charityValue,
+              annualTurnover
+            })
+            .then(function(valid) {
+              result(valid)
+            });
+        })
+        .catch(function(err) {
         if(err) {
           Swal.fire({
             type: 'error',
@@ -60,18 +72,6 @@ import './style.css'
           })
         }
       })
-
-      requiredSchema
-      .isValid({
-        trusteesValue, 
-        charityValue,
-        annualTurnover
-      })
-      .then(function(valid) {
-        console.log(valid)
-        console.log(trusteesValue,charityValue,annualTurnover)
-        //valid is boolean, when valid === true, then go to the QuestionsPage
-      });
     }
 
     return (<div className='page'>

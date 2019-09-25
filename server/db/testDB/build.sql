@@ -11,7 +11,7 @@ question_3__c TEXT NOT NULL
 );
 
 CREATE TABLE salesforce.questions__c (
-id SERIAL PRIMARY KEY,
+Name SERIAL PRIMARY KEY,
 title__c TEXT NOT NULL, 
 wordsLimit__c INT NOT NULL, 
 tips__c TEXT, 
