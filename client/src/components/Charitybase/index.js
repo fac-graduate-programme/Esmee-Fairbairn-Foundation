@@ -15,16 +15,14 @@ import List from './list'
 
 import "./style.css";
 
-export default (props) =>{
+export default ({setSelectedCharity}) =>{
 
     const [regestered, setRegestered] = useState("")
     const [charityName, setCharityName] = useState("")
     const [auth, setAuth] = useState("")
     const [charityBaseResult, setcharityBaseResult] = useState(false)
     
-    // needs to be moved to where this is called and then passed as a prop
-    const [validateByAPI, setValidatedByAPI] = useState(false)
-    const [selectedCharity, setSelectedCharity] = useState(null)
+   
 
     const [loading, setLoading] = useState(null);
     const [error,setError] = useState(false)
@@ -34,6 +32,7 @@ export default (props) =>{
       .then(res => setAuth(res.data.data))
       .catch(err => setError(err))
     }, [])
+
 
     const regesteredWithAPI = string => {
     setRegestered(string)
@@ -94,7 +93,6 @@ export default (props) =>{
                 text: "Something went wrong. Please resubmit your organisation's name."
               })
             } else{
-              console.log(data.CHC.getCharities.list)
               setcharityBaseResult(data.CHC.getCharities.list)
             
             }
@@ -114,14 +112,14 @@ export default (props) =>{
           <FormControlLabel value='false' control={<Radio />} label="No" />
         </RadioGroup>
         <p className='quiz_qiestions'>2. What is your Charity's Name?</p>
-        <input type='text' className='charity-name_input' placeholder='Enter a value' value={charityName} onChange={e => setCharityName(e.target.value)} />
+        <input type='text' className='charity-name_input' value={charityName} onChange={e => setCharityName(e.target.value)} />
         <Button
               style={{ width: '49%' }}
               label="search"
               className="back secondary"
               onClick={handleValidation}
            >Search</Button>
-        { !loading && charityBaseResult ? <List charities={charityBaseResult} setCharity={setCharityName} setValidatedByAPI={setValidatedByAPI} setSelectedCharityNum={setSelectedCharity} loading={loading}/> : null}
+        { !loading && charityBaseResult ? <List charities={charityBaseResult} setCharity={setCharityName} setSelectedCharityNum={setSelectedCharity} loading={loading}/> : null}
         </>
       )
     }

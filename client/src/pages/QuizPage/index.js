@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Swal from 'sweetalert2'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
@@ -13,7 +13,20 @@ import './style.css'
 
     const [trusteesValue, setTrusteesValue] = useState('')
     const [charityValue, setCharityValue] = useState('')
-    const [annualTurnover, setAnnualTurnover] = useState()
+    const [annualTurnover, setAnnualTurnover] = useState(0)
+
+    const [selectedCharity, setSelectedCharity] = useState(false)
+    useEffect(() => {
+     
+      if(selectedCharity){
+        const trustees = selectedCharity["trustees"];
+        setAnnualTurnover(selectedCharity.finances[0].income)
+     setCharityValue("charityYes")
+     if ([...trustees].length >= 3 ) setTrusteesValue("trusteesYes")
+     else{setTrusteesValue("trusteesNo")}} 
+   
+    }, [selectedCharity])
+
     const schema = yup.object().shape({
       trusteesValue: yup.string().required(),
       charityValue: yup.string().required(),
@@ -55,14 +68,16 @@ import './style.css'
         annualTurnover
       })
       .then(function(valid) {
+        console.log(valid)
+        console.log(trusteesValue,charityValue,annualTurnover)
         //valid is boolean, when valid === true, then go to the QuestionsPage
       });
     }
 
     return (<div className='page'>
-        <CharitybaseComponent />
+        <CharitybaseComponent setSelectedCharity={setSelectedCharity}/>
         <p className='quiz_qiestions'>3. What is you annual turnover?</p>
-        <input type='text' className='page-annualTurnover' placeholder='Enter a value' onChange={handleAnnualTurnover} />
+        <input type='text' className='page-annualTurnover' placeholder='Enter a value' value={annualTurnover} onChange={handleAnnualTurnover} />
         <p className='quiz_qiestions'>4. Do you have a minimum of 3 trustees?</p>   
         <RadioGroup aria-label="trustees" name="trustees" value={trusteesValue} onChange={handleTrusteesChange}>
           <FormControlLabel value="trusteesYes" control={<Radio />} label="Yes" />

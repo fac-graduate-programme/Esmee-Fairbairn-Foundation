@@ -16,7 +16,7 @@ if (close) {
 
   const clickeditem = e => {
     setCharity(charities[e.target.value].names[0].value)
-
+    setSelectedCharityNum(charities[e.target.value])
     setClose(true)
   }
   return (
