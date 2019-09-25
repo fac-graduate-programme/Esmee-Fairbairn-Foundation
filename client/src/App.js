@@ -6,6 +6,8 @@ import Page1 from './pages/Welcome'
 import Page2 from './pages/Note'
 import Page3 from './pages/Tips'
 import Page4 from './pages/Questions'
+import QuizPage from './pages/QuizPage'
+import PooUp from './components/PopUp'
 import logo from './assets/title-logo.svg'
 
 import './style.css'
@@ -13,6 +15,8 @@ import './style.css'
 const App = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [error, setError] = useState();
+  const [showApp, setShowApp] = useState(false);
+  const [showQuiz, setShowQuiz] = useState(true);
   const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
@@ -26,6 +30,20 @@ const App = () => {
     setPageNumber(pageNumber+1)
   }
 
+  const handleQuizResult = (isValid) => {
+    
+    if(isValid) {
+       setShowApp(true)
+       setShowQuiz(false)
+    } else {
+      Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: 'Sorry, you did not match our criteria to get the fund!',
+      }) 
+    }
+  }
+
   return (
     <div className="app">
       <img src={logo} className='app-logo' />
@@ -36,6 +54,8 @@ const App = () => {
         null
       )}
       
+     {showQuiz == true ? <QuizPage result={handleQuizResult} /> : null}
+     {showApp  == true ? <div>ddd
       {pageNumber === 1 ? <Page1 handleStaticButton = {handleStaticButton}  /> : null}
       {pageNumber === 2 ? <Page2 handleStaticButton = {handleStaticButton}  /> : null}
       {pageNumber === 3 ? <Page3 handleStaticButton = {handleStaticButton}  /> : null}
@@ -45,7 +65,7 @@ const App = () => {
           text: 'Something went wrong, try again!',
         }) 
         : <Page4 questions={questions}/> : null}
-
+      </div> : null}
   </div>
   )
 }

@@ -9,7 +9,7 @@ import Button from '../../components/Button'
 import './style.css'
 
  function QuizPage (props) {
-
+    const { result } = props;
     const [trusteesValue, setTrusteesValue] = useState('')
     const [charityValue, setCharityValue] = useState('')
     const [annualTurnover, setAnnualTurnover] = useState()
@@ -54,7 +54,7 @@ import './style.css'
         annualTurnover
       })
       .then(function(valid) {
-        //valid is boolean, when valid === true, then go to the QuestionsPage
+         result(valid)
       });
     }
 
