@@ -7,7 +7,6 @@ import Page2 from './pages/Note'
 import Page3 from './pages/Tips'
 import Page4 from './pages/Questions'
 import QuizPage from './pages/QuizPage'
-import PooUp from './components/PopUp'
 import logo from './assets/title-logo.svg'
 
 import './style.css'
@@ -55,7 +54,7 @@ const App = () => {
       )}
       
      {showQuiz == true ? <QuizPage result={handleQuizResult} /> : null}
-     {showApp  == true ? <div>ddd
+     {showApp  == true ? <div>
       {pageNumber === 1 ? <Page1 handleStaticButton = {handleStaticButton}  /> : null}
       {pageNumber === 2 ? <Page2 handleStaticButton = {handleStaticButton}  /> : null}
       {pageNumber === 3 ? <Page3 handleStaticButton = {handleStaticButton}  /> : null}
