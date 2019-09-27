@@ -12,9 +12,9 @@ export default function TabBody(props) {
     <div className='tabBody'>
       <h1 className='tabBody-question'>{title}</h1>
       <ul>
-        {tips.map((item, index) => <li key={index}>{item}</li>)}
+        {tips.map((item, index) => <li className='bullet-points' key={index}>{item}</li>)}
       </ul>
-      <h2>We do not fund:</h2>
+      <h3>We do not fund:</h3>
       <ul>
         {expectations.map((item, index) => <li key={index} className='tabBody-expectationsItem'>{item}</li>)}
       </ul>
