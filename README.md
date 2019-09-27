@@ -37,7 +37,27 @@ We created a quiz page containing three questions and validate the answers. Base
 - The project is now deployed and running without problems
 - The next step is futher user testing
 - Any new featuers can be added in future
+### Tests:mag:
+- the original repo has Travis CI
+#### Running tests locally
 
+1. add 
+``TEST_DATABASE_URL= postgres://salesforcetester:test@localhost:5432/salesforcetest ``
+to your .env
+2. Create a test database with ``npm run buildtest`` 
+OR 
+```psql
+CREATE DATABASE salesforcetest; 
+CREATE USER salesforcetester WITH SUPERUSER PASSWORD 'test';
+ALTER DATABASE salesforcetest OWNER TO salesforcetester;
+```
+3. Create a schema in that database with the following commands 
+ ``` psql postgres://salesforcetester:test@localhost:5432/salesforcetest  
+CREATE SCHEMA salesforce; 
+SET search_path TO salesforce, public;
+```
+4. Run the tests with 
+ ``npm test``
 
 ## Ideas for the next sprint:thought_balloon:
 - Add Login Feature
