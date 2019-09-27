@@ -9,6 +9,7 @@ import AppBar from '@material-ui/core/AppBar'
 import SwipeableViews from 'react-swipeable-views'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
+import ReactGA, { ga } from 'react-ga'
 
 import CustomTab from '../../components/Tab'
 import Review from '../../components/Review'
@@ -78,6 +79,10 @@ const Page4 = props => {
   }
 
   const handleSubmit = () => {
+    ReactGA.event({
+      category: 'Questions',
+      label: 'Submitted'
+    });
     if (
       answer1.split(' ')[0] === '' ||
       answer1.split(' ').length > questions[0].wordsLimit ||
