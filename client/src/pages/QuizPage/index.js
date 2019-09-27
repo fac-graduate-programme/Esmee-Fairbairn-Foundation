@@ -11,7 +11,7 @@ import CharitybaseComponent from '../../components/Charitybase'
 import './style.css'
 
  function QuizPage (props) {
-    const { result } = props;
+    const { handleStaticButton } = props;
     const [trusteesValue, setTrusteesValue] = useState('')
     const [charityValue, setCharityValue] = useState('')
     const [annualTurnover, setAnnualTurnover] = useState('')
@@ -81,7 +81,7 @@ import './style.css'
               annualTurnover
             })
             .then(function(valid) {
-              result(valid)
+              handleStaticButton()
             });
         })
         .catch(function(err) {
