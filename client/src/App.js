@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
-import ReactGA, { ga } from 'react-ga'
+import ReactGA from 'react-ga'
 
 import WelcomePage from './pages/Welcome'
 import NotePage from './pages/Note'
@@ -20,8 +20,6 @@ const  App = () => {
 
   const [pageNumber, setPageNumber] = useState(1);
   const [error, setError] = useState();
-  const [showApp, setShowApp] = useState(false);
-  const [showQuiz, setShowQuiz] = useState(true);
   const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
@@ -40,37 +38,20 @@ const  App = () => {
     setPageNumber(pageNumber+1)
   }
 
-  const handleQuizResult = (isValid) => {
-    
-    if(isValid) {
-      Swal.fire({
-        type: 'success',
-        title: 'Nice',
-        text: 'Thank you for submitting the Quiz. Please fill the application to get the fund',
-      }) 
-       setShowApp(true)
-       setShowQuiz(false)
-    } else {
-      Swal.fire({
-        type: 'error',
-        title: 'Oops...',
-        text: 'Sorry, you did not match our criteria to get the fund!',
-      }) 
-    }
-  }
+
 
   return (
     <div className="app">
-      <img src={logo} className='app-logo' />
+      <img src={logo} className='app-logo' alt='default-logo' />
 
       {pageNumber !== 1 && pageNumber !==2 ? (
-        <h4 className='app-subTitle' >Refer to <a href='https://www.esmeefairbairn.org.uk/userfiles/Documents/Application%20Forms/GuidanceforGrantApplicants.pdf' target='_blank' className='app-subTitle--link'> application guidelines</a></h4>
+        <h4 className='app-subTitle' >Refer to <a rel='noopener noreferrer' href='https://www.esmeefairbairn.org.uk/userfiles/Documents/Application%20Forms/GuidanceforGrantApplicants.pdf' target='_blank' className='app-subTitle--link'> application guidelines</a></h4>
       ) : (
         null
       )}
       
-     {showQuiz == true ? <QuizPage result={handleQuizResult} /> : null}
-     {showApp  == true ? (function(pageNumber) {  
+    
+     {(function(pageNumber) {  
       switch(pageNumber) {
         case 1:
           return <WelcomePage handleStaticButton = {handleStaticButton}  />
@@ -78,7 +59,10 @@ const  App = () => {
           return <NotePage handleStaticButton = {handleStaticButton}  />
         case 3:
           return <TipsPage handleStaticButton = {handleStaticButton}  />
-        case 4: {
+        case 4:
+          return <QuizPage handleStaticButton={handleStaticButton} />
+        case 5:
+        {
           if (error) {
             Swal.fire({
               type: 'error',
@@ -88,7 +72,7 @@ const  App = () => {
           } else return <QuestionsPage questions={questions}/>
         }
       }
-    })(pageNumber): null}
+    })(pageNumber)}
   </div>
   )
 }

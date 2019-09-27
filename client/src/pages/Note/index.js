@@ -44,6 +44,7 @@ export default props => {
         <p>
           You can find them
           <a
+          rel="noopener noreferrer"
             href="https://www.esmeefairbairn.org.uk/userfiles/Documents/Application%20Forms/GuidanceforGrantApplicants.pdf"
             target="_blank"
             className="page2-note-link"

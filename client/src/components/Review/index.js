@@ -4,7 +4,7 @@ import './style.css'
 
 export default function Review(props) {
 
-  const { questions, href, answers } = props;
+  const { questions, answers } = props;
 
   return (
     <div className='review'>

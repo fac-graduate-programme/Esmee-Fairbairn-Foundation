@@ -9,7 +9,7 @@ import AppBar from '@material-ui/core/AppBar'
 import SwipeableViews from 'react-swipeable-views'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
-import ReactGA, { ga } from 'react-ga'
+import ReactGA from 'react-ga'
 
 import CustomTab from '../../components/Tab'
 import Review from '../../components/Review'
