@@ -9,6 +9,7 @@
    background-color: #C2C2C2;
    border: none;
    font-size: .8em;   
+   height: 239px;
  }
 
  .textarea-answer::placeholder {

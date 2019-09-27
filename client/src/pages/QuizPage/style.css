@@ -1,10 +1,9 @@
-.page {
-    text-align: left
-}
 
 .page-annualTurnover {
     border-radius: 5px;
     background-color: #C2C2C2;
+    padding: 20px 0px;
+    padding-left: 5px;
     border: none;
     height: 30px;
     width: 100%;
@@ -17,5 +16,6 @@
 .quiz_qiestions {
     text-align: left;
     margin: 1em 0px;
-    font-size: 1em;
+    font-size: 1.2em;
+    font-weight: bold;
 }

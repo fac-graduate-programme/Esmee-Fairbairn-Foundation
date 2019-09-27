@@ -20,9 +20,9 @@ const PopUp = ({open, setOpen, ...props}) => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
         {...props}
-      >
+      > <div className="custom-success-popup">
         <DialogTitle>
-          Thank you. Your response has been processed successfully.
+          Thank you. <br/> Your response has been processed successfully.
         </DialogTitle>
         <DialogActions>
           <div className="ok-button">
@@ -31,6 +31,7 @@ const PopUp = ({open, setOpen, ...props}) => {
             </Button>
           </div>
         </DialogActions>
+        </div>
       </Dialog>
     </div>
   );

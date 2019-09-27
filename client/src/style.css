@@ -33,6 +33,7 @@ html {
 
 .app-subTitle {
   text-align: right;
+  margin-bottom: 10px;
 }
 
 .app-subTitle--link {

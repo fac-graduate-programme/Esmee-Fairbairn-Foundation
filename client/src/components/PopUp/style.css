@@ -5,3 +5,8 @@
 .ok-button {
   margin: 0 auto;
 }
+
+.custom-success-popup{
+ padding: 10px;
+ text-align: center;
+}
