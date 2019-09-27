@@ -1,4 +1,4 @@
-import ReactGA, { ga } from 'react-ga';
+import ReactGA from 'react-ga';
 
 const initializeAnalytics = () => {
     ReactGA.initialize('UA-148075978-1');

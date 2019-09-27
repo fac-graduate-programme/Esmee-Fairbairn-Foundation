@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
-import ReactGA, { ga } from 'react-ga'
+import ReactGA from 'react-ga'
 
 import WelcomePage from './pages/Welcome'
 import NotePage from './pages/Note'
@@ -42,10 +42,10 @@ const  App = () => {
 
   return (
     <div className="app">
-      <img src={logo} className='app-logo' />
+      <img src={logo} className='app-logo' alt='default-logo' />
 
       {pageNumber !== 1 && pageNumber !==2 ? (
-        <h4 className='app-subTitle' >Refer to <a href='https://www.esmeefairbairn.org.uk/userfiles/Documents/Application%20Forms/GuidanceforGrantApplicants.pdf' target='_blank' className='app-subTitle--link'> application guidelines</a></h4>
+        <h4 className='app-subTitle' >Refer to <a rel='noopener noreferrer' href='https://www.esmeefairbairn.org.uk/userfiles/Documents/Application%20Forms/GuidanceforGrantApplicants.pdf' target='_blank' className='app-subTitle--link'> application guidelines</a></h4>
       ) : (
         null
       )}

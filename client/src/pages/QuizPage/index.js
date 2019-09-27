@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Swal from 'sweetalert2'
-import ReactGA, { ga } from 'react-ga'
+import ReactGA from 'react-ga'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Radio from '@material-ui/core/Radio'
