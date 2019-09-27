@@ -5,6 +5,7 @@ import Swal from 'sweetalert2'
 import * as yup from 'yup'
 import ApolloClient from 'apollo-boost'
 import { gql } from 'apollo-boost'
+import ReactGA, { ga } from 'react-ga'
 
 import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
@@ -12,6 +13,7 @@ import Radio from '@material-ui/core/Radio'
 
 import Button from '../Button'
 import List from './list'
+import initializaAnalytics from '../Tracking';
 
 import "./style.css";
 
@@ -35,6 +37,11 @@ export default ({setSelectedCharity}) =>{
 
 
     const regesteredWithAPI = string => {
+      ReactGA.event({
+        category: 'Quiz',
+        action: `Registered: ${regestered}`,
+        label: 'Answered'
+      });
     setRegestered(string)
     }
 
@@ -53,6 +60,14 @@ export default ({setSelectedCharity}) =>{
 
 
     const handleValidation = async (name) => { 
+
+      initializaAnalytics()
+
+      ReactGA.event({
+        category: 'Quiz',
+        action: `Charity Name: ${charityName}`,
+        label: 'Answered'
+      });
 
     const valid= await requiredSchema.isValid({ regestered, charityName })
       if(!valid) {
