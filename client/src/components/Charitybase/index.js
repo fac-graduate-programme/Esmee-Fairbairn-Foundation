@@ -39,7 +39,7 @@ export default ({setSelectedCharity}) =>{
     const regesteredWithAPI = string => {
       ReactGA.event({
         category: 'Quiz',
-        action: `Registered: ${regestered}`,
+        action: `Registered: ${string}`,
         label: 'Answered'
       });
     setRegestered(string)
