@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Swal from 'sweetalert2'
+import ReactGA, { ga } from 'react-ga'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Radio from '@material-ui/core/Radio'
@@ -13,7 +14,7 @@ import './style.css'
     const { result } = props;
     const [trusteesValue, setTrusteesValue] = useState('')
     const [charityValue, setCharityValue] = useState('')
-    const [annualTurnover, setAnnualTurnover] = useState(0)
+    const [annualTurnover, setAnnualTurnover] = useState('')
 
     const [selectedCharity, setSelectedCharity] = useState(false)
     useEffect(() => {
@@ -39,18 +40,38 @@ import './style.css'
     })
 
     const  handleTrusteesChange = (event) => {
+      ReactGA.event({
+        category: 'Quiz',
+        action: `Minimum of 3 trustees: ${event.target.value}`,
+        label: 'Answered'
+      });
       setTrusteesValue(event.target.value);
     }
 
     const  handleCharityChange = (event) => {
+      ReactGA.event({
+        category: 'Quiz',
+        action: `Charity: ${event.target.value}`,
+        label: 'Answered'
+      });
       setCharityValue(event.target.value);
     }
 
     const handleAnnualTurnover = (event) => {
+      ReactGA.event({
+        category: 'Quiz',
+        action: `Annual Turnover: ${event.target.value}`,
+        label: 'Answered'
+      });
       setAnnualTurnover(event.target.value)
     }
 
     const handleSubmit = () => {
+      ReactGA.event({
+        category: 'Navigation',
+        action: 'Proceed',
+        label: 'Quiz Completed'
+      });
       schema.validate({ trusteesValue, charityValue, annualTurnover})
         .then(()=> {
             requiredSchema

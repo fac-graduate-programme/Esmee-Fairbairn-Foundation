@@ -9,12 +9,10 @@ import TipsPage from './pages/Tips'
 import QuestionsPage from './pages/Questions'
 import QuizPage from './pages/QuizPage'
 import logo from './assets/title-logo.svg'
+import initializeAnalytics from '../../client/src/components/Tracking';
 
 import './style.css'
 
-const initializeAnalytics = () => {
-  ReactGA.initialize('UA-148722706-1');
-}
 
 const  App = () => {
 
